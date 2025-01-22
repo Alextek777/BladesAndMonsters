@@ -1,0 +1,3 @@
+/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles/BladesAndMonsters.dir
+/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles/edit_cache.dir
+/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles/rebuild_cache.dir

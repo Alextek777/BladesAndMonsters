@@ -1,0 +1,47 @@
+version: '3'
+
+tasks:
+  cmake:
+    aliases:
+      - cmake
+    desc: "CMake project"
+    cmds:
+      - cd build && cmake ..
+
+  make:
+    aliases:
+      - make
+    desc: "Make project"
+    cmds:
+      - cd build && make
+
+  clean:
+    aliases:
+      - clean
+    desc: "Cleaning build directory"
+    cmds:
+      - rm -rf build/*
+
+  build:
+    aliases:
+      - build
+    desc: "Building project"
+    cmds:
+      - task clean
+      - task cmake
+      - task make
+
+  run:
+    aliases:
+      - run
+    desc: "Running BladesAndMonsters"
+    cmds:
+      - task build
+      - cd build/bin && ./BladesAndMonsters
+
+  rerun:
+    aliases:
+      - run
+    desc: "Running BladesAndMonsters"
+    cmds:
+      - cd build/bin && ./BladesAndMonsters
