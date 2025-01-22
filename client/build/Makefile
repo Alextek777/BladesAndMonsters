@@ -177,6 +177,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/maps/cMap.o: src/maps/cMap.cpp.o
+.PHONY : src/maps/cMap.o
+
+# target to build an object file
+src/maps/cMap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o
+.PHONY : src/maps/cMap.cpp.o
+
+src/maps/cMap.i: src/maps/cMap.cpp.i
+.PHONY : src/maps/cMap.i
+
+# target to preprocess a source file
+src/maps/cMap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.i
+.PHONY : src/maps/cMap.cpp.i
+
+src/maps/cMap.s: src/maps/cMap.cpp.s
+.PHONY : src/maps/cMap.s
+
+# target to generate assembly for a file
+src/maps/cMap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.s
+.PHONY : src/maps/cMap.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +216,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/maps/cMap.o"
+	@echo "... src/maps/cMap.i"
+	@echo "... src/maps/cMap.s"
 .PHONY : help
 
 

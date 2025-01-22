@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o.d"
   "CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o"
   "CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o.d"
+  "CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o"
+  "CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o.d"
   "bin/BladesAndMonsters"
   "bin/BladesAndMonsters.pdb"
 )

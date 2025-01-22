@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/kalex/projects/BladesAndMonsters/client/src/engine/engine.cpp" "CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o" "gcc" "CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o.d"
   "/home/kalex/projects/BladesAndMonsters/client/src/main.cpp" "CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o" "gcc" "CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o.d"
+  "/home/kalex/projects/BladesAndMonsters/client/src/maps/cMap.cpp" "CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o" "gcc" "CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o.d"
   )
 
 # Targets to which this target links.
