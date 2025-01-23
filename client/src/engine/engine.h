@@ -48,19 +48,19 @@ private:
 
 
 
-	// Number of tiles in world
-	olc::vi2d vWorldSize = { 50, 50 };
+	// // Number of tiles in world
+	// olc::vi2d vWorldSize = { 50, 50 };
 
-	// Size of single tile graphic
+	// // Size of single tile graphic
 	olc::vi2d vTileSize = { 40, 20 };
 
-	// Where to place tile (0,0) on screen (in tile size steps)
-	olc::vi2d vOrigin = { 5, 1 };
+	// // Where to place tile (0,0) on screen (in tile size steps)
+	olc::vi2d vOrigin = { 0, 0 };
 
-	// Sprite that holds all imagery
-	olc::Sprite *sprIsom = nullptr;
-	// Pointer to create 2D world array
-	int *pWorld = nullptr;
+	// // Sprite that holds all imagery
+	// olc::Sprite *sprIsom = nullptr;
+	// // Pointer to create 2D world array
+	// int *pWorld = nullptr;
 
 
 

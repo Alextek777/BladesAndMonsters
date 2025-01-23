@@ -1,5 +1,6 @@
 
 #include "cAssets.h"
+#include "cMapVillage.h"
 
 Assets::Assets()
 {
@@ -18,10 +19,15 @@ void Assets::LoadSprites()
 		m_mapSprites[sName] = s;
 	};
 
-	load("village", "rpgdata/gfx/tiles002.png");
+	load("village", "sprites/isometric_demo.png");
 }
 
 void Assets::LoadMaps()
 {
-	
+    auto load = [&](cMap* m)
+	{
+		m_mapMaps[m->sName] = m;
+	};
+
+	load(new cMap_Village());
 }

@@ -2,8 +2,6 @@
 #include "cMap.h"
 #include <fstream>
 
-#define X(n) g_script->AddCommand(new cCommand_ ## n)
-
 cMap::cMap()
 {
 	pSprite = nullptr;
