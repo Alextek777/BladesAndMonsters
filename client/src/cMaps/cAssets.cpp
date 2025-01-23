@@ -23,10 +23,5 @@ void Assets::LoadSprites()
 
 void Assets::LoadMaps()
 {
-	auto load = [&](cMap* m)
-	{
-		m_mapMaps[m->sName] = m;
-	};
-
-	load(new cMap_Village1());
+	
 }

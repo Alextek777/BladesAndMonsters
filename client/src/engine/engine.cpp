@@ -149,6 +149,5 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 
 void Engine::ChangeMap(string sMapName, float x, float y)
 {
-	m_pCurrentMap = Assets::get().GetMap(sMapName);
-	m_pCurrentMap->PopulateDynamics(m_vecDynamics);
+
 }
