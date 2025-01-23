@@ -1,32 +1,51 @@
 #pragma once
-#include <src/olcPixelGameEngine/olcPixelGameEngine.h>
 
-class AnimatedGame : public olc::PixelGameEngine
+
+#include <iostream>
+#include <string>
+#include <memory.h>
+#include <algorithm>
+
+#include <olcPixelGameEngine.h>
+#include "cMaps/cMap.h"
+#include "cDynamics/cDynamics.h"
+
+
+using namespace std;
+
+#define X(n) m_script.AddCommand(new cCommand_ ## n)
+
+class Engine : public olc::PixelGameEngine
 {
 public:
-    AnimatedGame()
-    {
-        sAppName = "Animated Game";
-    }
+	Engine();
 
 private:
-    // Character position and velocity
-    olc::vf2d position = { 50.0f, 50.0f };
-    olc::vf2d velocity = { 0.0f, 0.0f };
+	cMap *m_pCurrentMap = nullptr;
 
-    // Animation
-    olc::Sprite* spriteSheet = nullptr; // Sprite sheet for animation
-    int frameWidth = 32;
-    int frameHeight = 32;
-    int currentFrame = 0;
-    float frameTimer = 0.0f;
-    float frameDuration = 0.1f; // Time per frame in seconds
+	vector<cDynamic*> m_vecDynamics;    // Fixed
+	vector<cDynamic*> m_vecProjectiles; // Transient
 
-    // Movement speed
-    float speed = 100.0f;
+	float fCameraPosX = 0.0f;
+	float fCameraPosY = 0.0f;
+
+	enum
+	{
+		MODE_TITLE,
+		MODE_LOCAL_MAP,
+		MODE_WORLD_MAP,
+		MODE_INVENTORY,
+		MODE_SHOP
+	};
+
+	int m_nGameMode = MODE_LOCAL_MAP;
+
+protected:
+	bool OnUserCreate() override;
+	bool OnUserUpdate(float fElapsedTime) override;
+
+	bool UpdateLocalMap(float fElapsedTime);
 
 public:
-    bool OnUserCreate() override;
-    bool OnUserUpdate(float fElapsedTime) override;
-    bool OnUserDestroy() override;
+    void ChangeMap(string sMapName, float x, float y);
 };

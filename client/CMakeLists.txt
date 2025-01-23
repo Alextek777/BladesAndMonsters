@@ -5,20 +5,17 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 file(COPY content/sprites DESTINATION ${CMAKE_BINARY_DIR}/bin)
+file(COPY content/rpgdata DESTINATION ${CMAKE_BINARY_DIR}/bin)
 
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-include_directories(src/libs)
-include_directories(src/resources)
-include_directories(src/resources/game)
-
-
 file(GLOB_RECURSE SRC_FILES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
-include_directories(${CMAKE_SOURCE_DIR}/libs)
+
+include_directories(${CMAKE_SOURCE_DIR}/libs/src)
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 

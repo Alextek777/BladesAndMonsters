@@ -3,8 +3,8 @@
 
 int main()
 {
-    AnimatedGame game;
-    if (game.Construct(256, 240, 4, 4))
+    Engine game;
+    if (game.Construct(256, 240, 4, 4, false))
         game.Start();
     return 0;
 }

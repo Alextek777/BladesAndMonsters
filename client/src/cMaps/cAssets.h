@@ -1,51 +1,41 @@
 #pragma once
 
 #include <olcPixelGameEngine.h>
-
+#include "cMap.h"
 #include <map>
 
 class cMap;
-class cItem;
 
-class RPG_Assets
+class Assets
 {
 public:
-	static RPG_Assets& get()
+	static Assets& get()
 	{
-		static RPG_Assets me;
+		static Assets me;
 		return me;
 	}
 
-	RPG_Assets(RPG_Assets const&) = delete;
-	void operator=(RPG_Assets const&) = delete;
+	Assets(Assets const&) = delete;
+	void operator=(Assets const&) = delete;
 
-	olc::Sprite* GetSprite(string name)
+	olc::Sprite* GetSprite(std::string name)
 	{
 		return m_mapSprites[name];
 	}
 
-	cMap* GetMap(string name)
+	cMap* GetMap(std::string name)
 	{
 		return m_mapMaps[name];
 	}
 
-	cItem* GetItem(string name)
-	{
-		return m_mapItems[name];
-	}
-
 	void LoadSprites();
-	void LoadMaps();
-	void LoadItems();
-	
-
+    void LoadMaps();
 private:
-	RPG_Assets();
-	~RPG_Assets();	
+	Assets();
+	~Assets();	
 
-	map<string, olc::Sprite*> m_mapSprites;
-	map<string, cMap*> m_mapMaps;
-	map<string, cItem*> m_mapItems;
+	std::map<std::string, olc::Sprite*> m_mapSprites;
+	std::map<std::string, cMap*> m_mapMaps;
 };
 
 

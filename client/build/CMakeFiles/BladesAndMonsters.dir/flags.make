@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/kalex/projects/BladesAndMonsters/client/src/libs -I/home/kalex/projects/BladesAndMonsters/client/src/resources -I/home/kalex/projects/BladesAndMonsters/client/src/resources/game -I/home/kalex/projects/BladesAndMonsters/client/src -I/home/kalex/projects/BladesAndMonsters/client/libs
+CXX_INCLUDES = -I/home/kalex/projects/BladesAndMonsters/client/src -I/home/kalex/projects/BladesAndMonsters/client/libs/src
 
 CXX_FLAGS = -std=gnu++17
 

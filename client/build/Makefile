@@ -129,6 +129,78 @@ BladesAndMonsters/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/build
 .PHONY : BladesAndMonsters/fast
 
+src/cDynamics/cDynamics.o: src/cDynamics/cDynamics.cpp.o
+.PHONY : src/cDynamics/cDynamics.o
+
+# target to build an object file
+src/cDynamics/cDynamics.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o
+.PHONY : src/cDynamics/cDynamics.cpp.o
+
+src/cDynamics/cDynamics.i: src/cDynamics/cDynamics.cpp.i
+.PHONY : src/cDynamics/cDynamics.i
+
+# target to preprocess a source file
+src/cDynamics/cDynamics.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.i
+.PHONY : src/cDynamics/cDynamics.cpp.i
+
+src/cDynamics/cDynamics.s: src/cDynamics/cDynamics.cpp.s
+.PHONY : src/cDynamics/cDynamics.s
+
+# target to generate assembly for a file
+src/cDynamics/cDynamics.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.s
+.PHONY : src/cDynamics/cDynamics.cpp.s
+
+src/cMaps/cAssets.o: src/cMaps/cAssets.cpp.o
+.PHONY : src/cMaps/cAssets.o
+
+# target to build an object file
+src/cMaps/cAssets.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o
+.PHONY : src/cMaps/cAssets.cpp.o
+
+src/cMaps/cAssets.i: src/cMaps/cAssets.cpp.i
+.PHONY : src/cMaps/cAssets.i
+
+# target to preprocess a source file
+src/cMaps/cAssets.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.i
+.PHONY : src/cMaps/cAssets.cpp.i
+
+src/cMaps/cAssets.s: src/cMaps/cAssets.cpp.s
+.PHONY : src/cMaps/cAssets.s
+
+# target to generate assembly for a file
+src/cMaps/cAssets.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.s
+.PHONY : src/cMaps/cAssets.cpp.s
+
+src/cMaps/cMap.o: src/cMaps/cMap.cpp.o
+.PHONY : src/cMaps/cMap.o
+
+# target to build an object file
+src/cMaps/cMap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o
+.PHONY : src/cMaps/cMap.cpp.o
+
+src/cMaps/cMap.i: src/cMaps/cMap.cpp.i
+.PHONY : src/cMaps/cMap.i
+
+# target to preprocess a source file
+src/cMaps/cMap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.i
+.PHONY : src/cMaps/cMap.cpp.i
+
+src/cMaps/cMap.s: src/cMaps/cMap.cpp.s
+.PHONY : src/cMaps/cMap.s
+
+# target to generate assembly for a file
+src/cMaps/cMap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.s
+.PHONY : src/cMaps/cMap.cpp.s
+
 src/engine/engine.o: src/engine/engine.cpp.o
 .PHONY : src/engine/engine.o
 
@@ -177,30 +249,6 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/maps/cMap.o: src/maps/cMap.cpp.o
-.PHONY : src/maps/cMap.o
-
-# target to build an object file
-src/maps/cMap.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o
-.PHONY : src/maps/cMap.cpp.o
-
-src/maps/cMap.i: src/maps/cMap.cpp.i
-.PHONY : src/maps/cMap.i
-
-# target to preprocess a source file
-src/maps/cMap.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.i
-.PHONY : src/maps/cMap.cpp.i
-
-src/maps/cMap.s: src/maps/cMap.cpp.s
-.PHONY : src/maps/cMap.s
-
-# target to generate assembly for a file
-src/maps/cMap.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/BladesAndMonsters.dir/build.make CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.s
-.PHONY : src/maps/cMap.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -210,15 +258,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... BladesAndMonsters"
+	@echo "... src/cDynamics/cDynamics.o"
+	@echo "... src/cDynamics/cDynamics.i"
+	@echo "... src/cDynamics/cDynamics.s"
+	@echo "... src/cMaps/cAssets.o"
+	@echo "... src/cMaps/cAssets.i"
+	@echo "... src/cMaps/cAssets.s"
+	@echo "... src/cMaps/cMap.o"
+	@echo "... src/cMaps/cMap.i"
+	@echo "... src/cMaps/cMap.s"
 	@echo "... src/engine/engine.o"
 	@echo "... src/engine/engine.i"
 	@echo "... src/engine/engine.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/maps/cMap.o"
-	@echo "... src/maps/cMap.i"
-	@echo "... src/maps/cMap.s"
 .PHONY : help
 
 

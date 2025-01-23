@@ -59,7 +59,7 @@ bool cMap::Create(string fileData, olc::Sprite* sprite, string name)
 
 cMap_Village1::cMap_Village1()
 {
-	Create("rpgdata/map/village1.lvl", RPG_Assets::get().GetSprite("village"), "coder town");
+	Create("rpgdata/map/introduction.lvl", Assets::get().GetSprite("village"), "coder town");
 }
 
 bool cMap_Village1::PopulateDynamics(vector<cDynamic*> &vecDyns)
@@ -68,8 +68,8 @@ bool cMap_Village1::PopulateDynamics(vector<cDynamic*> &vecDyns)
 	// vecDyns.push_back(new cDynamic_Teleport(12.0f, 6.0f, "home", 5.0f, 12.0f));
 
 	// // Add Items
-	// vecDyns.push_back(new cDynamic_Item(10, 10, RPG_Assets::get().GetItem("Small Health")));
-	// vecDyns.push_back(new cDynamic_Item(12, 10, RPG_Assets::get().GetItem("Health Boost")));
+	// vecDyns.push_back(new cDynamic_Item(10, 10, Assets::get().GetItem("Small Health")));
+	// vecDyns.push_back(new cDynamic_Item(12, 10, Assets::get().GetItem("Health Boost")));
 
 	// for (int i = 0; i < 3; i++)
 	// {

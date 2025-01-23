@@ -69,10 +69,52 @@ include CMakeFiles/BladesAndMonsters.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/BladesAndMonsters.dir/flags.make
 
+CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o: CMakeFiles/BladesAndMonsters.dir/flags.make
+CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o: /home/kalex/projects/BladesAndMonsters/client/src/cDynamics/cDynamics.cpp
+CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o: CMakeFiles/BladesAndMonsters.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o -MF CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o.d -o CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o -c /home/kalex/projects/BladesAndMonsters/client/src/cDynamics/cDynamics.cpp
+
+CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kalex/projects/BladesAndMonsters/client/src/cDynamics/cDynamics.cpp > CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.i
+
+CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kalex/projects/BladesAndMonsters/client/src/cDynamics/cDynamics.cpp -o CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.s
+
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o: CMakeFiles/BladesAndMonsters.dir/flags.make
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o: /home/kalex/projects/BladesAndMonsters/client/src/cMaps/cAssets.cpp
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o: CMakeFiles/BladesAndMonsters.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o -MF CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o.d -o CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o -c /home/kalex/projects/BladesAndMonsters/client/src/cMaps/cAssets.cpp
+
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kalex/projects/BladesAndMonsters/client/src/cMaps/cAssets.cpp > CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.i
+
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kalex/projects/BladesAndMonsters/client/src/cMaps/cAssets.cpp -o CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.s
+
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o: CMakeFiles/BladesAndMonsters.dir/flags.make
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o: /home/kalex/projects/BladesAndMonsters/client/src/cMaps/cMap.cpp
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o: CMakeFiles/BladesAndMonsters.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o -MF CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o.d -o CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o -c /home/kalex/projects/BladesAndMonsters/client/src/cMaps/cMap.cpp
+
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kalex/projects/BladesAndMonsters/client/src/cMaps/cMap.cpp > CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.i
+
+CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kalex/projects/BladesAndMonsters/client/src/cMaps/cMap.cpp -o CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.s
+
 CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o: CMakeFiles/BladesAndMonsters.dir/flags.make
 CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o: /home/kalex/projects/BladesAndMonsters/client/src/engine/engine.cpp
 CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o: CMakeFiles/BladesAndMonsters.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o -MF CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o.d -o CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o -c /home/kalex/projects/BladesAndMonsters/client/src/engine/engine.cpp
 
 CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.i: cmake_force
@@ -86,7 +128,7 @@ CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.s: cmake_force
 CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o: CMakeFiles/BladesAndMonsters.dir/flags.make
 CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o: /home/kalex/projects/BladesAndMonsters/client/src/main.cpp
 CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o: CMakeFiles/BladesAndMonsters.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o -MF CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o.d -o CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o -c /home/kalex/projects/BladesAndMonsters/client/src/main.cpp
 
 CMakeFiles/BladesAndMonsters.dir/src/main.cpp.i: cmake_force
@@ -97,35 +139,25 @@ CMakeFiles/BladesAndMonsters.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BladesAndMonsters.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kalex/projects/BladesAndMonsters/client/src/main.cpp -o CMakeFiles/BladesAndMonsters.dir/src/main.cpp.s
 
-CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o: CMakeFiles/BladesAndMonsters.dir/flags.make
-CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o: /home/kalex/projects/BladesAndMonsters/client/src/maps/cMap.cpp
-CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o: CMakeFiles/BladesAndMonsters.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o -MF CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o.d -o CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o -c /home/kalex/projects/BladesAndMonsters/client/src/maps/cMap.cpp
-
-CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kalex/projects/BladesAndMonsters/client/src/maps/cMap.cpp > CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.i
-
-CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kalex/projects/BladesAndMonsters/client/src/maps/cMap.cpp -o CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.s
-
 # Object files for target BladesAndMonsters
 BladesAndMonsters_OBJECTS = \
+"CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o" \
+"CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o" \
+"CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o" \
 "CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o" \
-"CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o" \
-"CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o"
+"CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o"
 
 # External object files for target BladesAndMonsters
 BladesAndMonsters_EXTERNAL_OBJECTS =
 
+bin/BladesAndMonsters: CMakeFiles/BladesAndMonsters.dir/src/cDynamics/cDynamics.cpp.o
+bin/BladesAndMonsters: CMakeFiles/BladesAndMonsters.dir/src/cMaps/cAssets.cpp.o
+bin/BladesAndMonsters: CMakeFiles/BladesAndMonsters.dir/src/cMaps/cMap.cpp.o
 bin/BladesAndMonsters: CMakeFiles/BladesAndMonsters.dir/src/engine/engine.cpp.o
 bin/BladesAndMonsters: CMakeFiles/BladesAndMonsters.dir/src/main.cpp.o
-bin/BladesAndMonsters: CMakeFiles/BladesAndMonsters.dir/src/maps/cMap.cpp.o
 bin/BladesAndMonsters: CMakeFiles/BladesAndMonsters.dir/build.make
 bin/BladesAndMonsters: CMakeFiles/BladesAndMonsters.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable bin/BladesAndMonsters"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kalex/projects/BladesAndMonsters/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable bin/BladesAndMonsters"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/BladesAndMonsters.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

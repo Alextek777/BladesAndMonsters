@@ -1,9 +1,9 @@
 
 #pragma once
 
-#include <olcPixelGameEngine.h>
-#include <src/cMaps/cAssets.h>
-#include <src/cDynamics/cDynamics.h>
+#include "cMaps/cAssets.h"
+#include "cDynamics/cDynamics.h"
+
 using namespace std;
 
 class cMap
