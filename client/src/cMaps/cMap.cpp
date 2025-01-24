@@ -41,7 +41,10 @@ bool cMap::Create(string fileData, olc::Sprite* sprite, string name)
 	ifstream data(fileData, ios::in | ios::binary);
 	if (data.is_open())
 	{
-		data >> nWidth >> nHeight;
+		data >> nWidth >> nHeight >> vTileSize.x >> vTileSize.y >> vOrigin.x >> vOrigin.y;
+		// data >> vTileSize.x >> vTileSize.y;
+		// data >> vOrigin.x >> vOrigin.y;
+
 		m_solids = new bool[nWidth * nHeight];
 		m_indices = new int[nWidth * nHeight];
 		for (int i = 0; i < nWidth * nHeight; i++)

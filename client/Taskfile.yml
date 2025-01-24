@@ -68,5 +68,8 @@ tasks:
       - rerun
     desc: "Running BladesAndMonsters (no rebuild)"
     cmds:
+      - rm -rf build/bin/maps
+      - rm -rf build/bin/sprites
+      - cp -r content/* build/bin/
       - cd build/bin && ./BladesAndMonsters
 
