@@ -6,7 +6,14 @@ tasks:
       - cmake
     desc: "CMake project"
     cmds:
-      - cd build && cmake ..
+      - mkdir -p build && cd build && cmake ..
+
+  cmake_debug:
+    aliases:
+      - cmake_debug
+    desc: "CMake project in Debug mode"
+    cmds:
+      - mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ..
 
   make:
     aliases:
@@ -31,6 +38,15 @@ tasks:
       - task cmake
       - task make
 
+  build_debug:
+    aliases:
+      - build_debug
+    desc: "Building project in Debug mode"
+    cmds:
+      - task clean
+      - task cmake_debug
+      - task make
+
   run:
     aliases:
       - run
@@ -39,9 +55,18 @@ tasks:
       - task build
       - cd build/bin && ./BladesAndMonsters
 
+  gdb:
+    aliases:
+      - gdb
+    desc: "Run BladesAndMonsters in gdb for debugging"
+    cmds:
+      - task build_debug
+      - cd build/bin && gdb -tui ./BladesAndMonsters
+
   rerun:
     aliases:
-      - run
-    desc: "Running BladesAndMonsters"
+      - rerun
+    desc: "Running BladesAndMonsters (no rebuild)"
     cmds:
       - cd build/bin && ./BladesAndMonsters
+
