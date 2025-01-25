@@ -20,6 +20,7 @@ void Assets::LoadSprites()
 	};
 
 	load("village", "sprites/isometric_demo.png");
+	load("player", "sprites/player.png");
 }
 
 void Assets::LoadMaps()

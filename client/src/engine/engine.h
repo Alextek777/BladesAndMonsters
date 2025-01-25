@@ -23,6 +23,8 @@ public:
 private:
 	cMap *m_pCurrentMap = nullptr;
 
+	cDynamic_Creature *m_pPlayer = nullptr;
+
 	vector<cDynamic*> m_vecDynamics;    // Fixed
 	vector<cDynamic*> m_vecProjectiles; // Transient
 

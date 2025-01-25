@@ -15,6 +15,8 @@ bool Engine::OnUserCreate()
 	Assets::get().LoadSprites();
 	Assets::get().LoadMaps();
 
+    m_pPlayer = new cDynamic_Creature_Witty();
+
 	ChangeMap("village", 5, 5);
     
     return true;
@@ -131,6 +133,38 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
     DrawString(4, 4, "Mouse   : " + std::to_string(vMouse.x) + ", " + std::to_string(vMouse.y), olc::BLACK);
     DrawString(4, 14, "Cell    : " + std::to_string(vCell.x) + ", " + std::to_string(vCell.y), olc::BLACK);
     DrawString(4, 24, "Selected: " + std::to_string(vSelected.x) + ", " + std::to_string(vSelected.y), olc::BLACK);
+
+
+
+
+    //----------------------------------------- player -------------------------------------------
+    m_pPlayer->vx = 0;
+    m_pPlayer->vy = 0;
+    if (GetKey(olc::UP).bHeld)
+        m_pPlayer->vy = -7.0f;
+
+    if (GetKey(olc::DOWN).bHeld)
+        m_pPlayer->vy = 7.0f;
+
+    if (GetKey(olc::LEFT).bHeld)
+        m_pPlayer->vx = -7.0f;
+
+    if (GetKey(olc::RIGHT).bHeld)
+        m_pPlayer->vx = 7.0f;
+        
+
+	// fCameraPosX = m_pPlayer->px;
+	// fCameraPosY = m_pPlayer->py;
+
+	// float fOffsetX = fCameraPosX - (float)nVisibleTilesX / 2.0f;
+	// float fOffsetY = fCameraPosY - (float)nVisibleTilesY / 2.0f;
+    m_pPlayer->Update(fElapsedTime, m_pPlayer);
+	m_pPlayer->DrawSelf(this, 0, 0);
+
+
+    //----------------------------------------- player END -------------------------------------------
+
+
     return true;
 }
 

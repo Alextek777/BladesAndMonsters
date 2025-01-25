@@ -1,9 +1,81 @@
 #pragma once 
+#include "cMaps/cAssets.h"
+#include <olcPixelGameEngine.h>
+
+class Engine;
+// class cItem;
+// class cWeapon;
+
+using namespace std;
+
+class cDynamic
+{
+public:
+	cDynamic(string n);
+	~cDynamic();
+
+public:
+	float px, py;
+	float vx, vy;
+	bool bSolidVsMap;
+	bool bSolidVsDyn;
+	bool bFriendly;
+	bool bRedundant;
+	bool bIsProjectile;
+	bool bIsAttackable;
+	string sName;
+
+public:
+	virtual void DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {}
+	virtual void Update(float fElapsedTime, cDynamic* player = nullptr) {}
+	virtual void OnInteract(cDynamic* player = nullptr) {}
+
+	static Engine* g_engine;
+};
 
 
 
-class cDynamic {
+class cDynamic_Creature : public cDynamic
+{
+public:
+	cDynamic_Creature(string n, olc::Sprite *sprite);
+
+protected:
+	olc::Sprite *m_pSprite;
+	float m_fTimer;
+	int m_nGraphicCounter;
+	enum { SOUTH = 0, WEST = 1, NORTH = 2, EAST = 3 } m_nFacingDirection;
+	enum { STANDING, WALKING, CELEBRATING, DEAD } m_nGraphicState;
+
+public:
+	int nHealth;
+	int nHealthMax;
+	int bControllable = true;
+
+public:
+	void DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) override;
+	void Update(float fElapsedTime, cDynamic* player = nullptr) override;
+	virtual void Behaviour(float fElapsedTime, cDynamic* player = nullptr);
+	int GetFacingDirection() { return m_nFacingDirection; };
+	virtual void PerformAttack() {};
+	void KnockBack(float dx, float dy, float dist);
+
+	// cWeapon *pEquipedWeapon = nullptr;
+
+protected:
+	float m_fStateTick;
+	float m_fKnockBackTimer = 0.0f;
+	float m_fKnockBackDX = 0.0f;
+	float m_fKnockBackDY = 0.0f;
+
+};
 
 
+class cDynamic_Creature_Witty : public cDynamic_Creature
+{
+public:
+	cDynamic_Creature_Witty();
 
+public:
+	void PerformAttack() override;
 };

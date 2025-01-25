@@ -4,7 +4,7 @@
 int main()
 {
     Engine game;
-    if (game.Construct(680, 420, 4, 4, true))
+    if (game.Construct(680, 420, 4, 4, false))
         game.Start();
     return 0;
 }
