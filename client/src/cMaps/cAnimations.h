@@ -62,8 +62,8 @@ struct Animation {
     }
 
     AnimationFrame* getFrame(uint16_t counter) {
-        if (frameVec == nullptr || frameCount == 0) {
-            return nullptr;
+        if (frameVec == nullptr || frameCount == 0 || &frameVec[counter % frameCount] == nullptr) {
+            throw std::out_of_range("Invalid frame access.");
         }
 
         return &frameVec[counter % frameCount];

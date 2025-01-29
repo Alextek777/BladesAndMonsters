@@ -7,5 +7,5 @@ void cAnimationHandler::load(string name, e_GraphicsState state, e_FactionDirect
 
 
 AnimationFrame* cAnimationHandler::getAnimationFrame(string &name, e_GraphicsState state, e_FactionDirection direction, uint16_t counter) {
-    return animations[name][state][direction].getFrame(counter);
+    return animations.at(name).at(state).at(direction).getFrame(counter);
 }
