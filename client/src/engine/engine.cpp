@@ -75,6 +75,9 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         };
     };
 
+
+    // todo: move map drawing in map.DrawSelf() 
+    
     // (0,0) is at top, defined by m_pCurrentMap->vOrigin, so draw from top to bottom
     // to ensure tiles closest to camera are drawn last
     for (int y = 0; y < m_pCurrentMap->nHeight; y++)
@@ -114,8 +117,9 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         }
     }
 
-
     //----------------------------------------- player -------------------------------------------
+    // todo: incapsulate all user input in handler func
+
     m_pPlayer->vx = 0;
     m_pPlayer->vy = 0;
     if (GetKey(olc::UP).bHeld)
