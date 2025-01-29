@@ -14,6 +14,7 @@ bool Engine::OnUserCreate()
 {
 	Assets::get().LoadSprites();
 	Assets::get().LoadMaps();
+    Assets::get().LoadAnimations();
 
     m_pPlayer = new cDynamic_Creature_Witty();
 

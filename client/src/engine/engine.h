@@ -13,8 +13,6 @@
 
 using namespace std;
 
-#define X(n) m_script.AddCommand(new cCommand_ ## n)
-
 class Engine : public olc::PixelGameEngine
 {
 public:

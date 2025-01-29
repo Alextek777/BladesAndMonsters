@@ -1,6 +1,7 @@
 #pragma once 
 #include "cMaps/cAssets.h"
 #include <olcPixelGameEngine.h>
+#include "consts/consts.h"
 
 class Engine;
 // class cItem;
@@ -44,8 +45,8 @@ protected:
 	olc::Sprite *m_pSprite;
 	float m_fTimer;
 	int m_nGraphicCounter;
-	enum { SOUTH = 0, WEST = 1, NORTH = 2, EAST = 3 } m_nFacingDirection;
-	enum { STANDING, WALKING, CELEBRATING, DEAD } m_nGraphicState;
+	e_FactionDirection m_nFacingDirection;
+	e_GraphicsState m_nGraphicState;
 
 public:
 	int nHealth;

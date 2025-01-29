@@ -1,10 +1,14 @@
 #pragma once
 
 #include <olcPixelGameEngine.h>
-#include "cMap.h"
 #include <map>
 
+#include "cMap.h"
+#include "cAnimations.h"
+
 class cMap;
+class cAnimationHandler;
+
 
 class Assets
 {
@@ -28,6 +32,11 @@ public:
 		return m_mapMaps[name];
 	}
 
+	AnimationFrame* GetAnimationFrame(string &name, e_GraphicsState state, e_FactionDirection direction, uint16_t counter) {
+		return m_animationHandler.getAnimationFrame(name, state, direction, counter);
+	}
+
+	void LoadAnimations();
 	void LoadSprites();
     void LoadMaps();
 private:
@@ -36,6 +45,11 @@ private:
 
 	std::map<std::string, olc::Sprite*> m_mapSprites;
 	std::map<std::string, cMap*> m_mapMaps;
+	cAnimationHandler m_animationHandler;
 };
+
+
+
+
 
 

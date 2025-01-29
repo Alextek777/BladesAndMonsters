@@ -64,7 +64,7 @@ void cDynamic_Creature::Update(float fElapsedTime, cDynamic* player)
 		{
 			m_fTimer -= 0.2f;
 			m_nGraphicCounter++;
-			m_nGraphicCounter %= 2;
+			m_nGraphicCounter %= 15;
 		}
 
 		if (fabs(vx) > 0 || fabs(vy) > 0)
@@ -97,32 +97,14 @@ void cDynamic_Creature::KnockBack(float dx, float dy, float dist)
 
 void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 {
-	int nSheetOffsetX = 0;
-	int nSheetOffsetY = 0;
+	AnimationFrame* frame = Assets::get().GetAnimationFrame(sName, m_nGraphicState, m_nFacingDirection, m_nGraphicCounter);
 
-	switch (m_nGraphicState)
-	{
-	case STANDING:
-		nSheetOffsetX = m_nFacingDirection * 16;
-		break;
-
-	case WALKING:
-		nSheetOffsetX = m_nFacingDirection * 16;
-		nSheetOffsetY = m_nGraphicCounter * 16;
-		break;
-
-	case CELEBRATING:
-		nSheetOffsetX = 4 * 16;
-		break;
-
-	case DEAD:
-		nSheetOffsetX = 4 * 16;
-		nSheetOffsetY = 1 * 16;
-		break;
-
+	if (frame == nullptr || frame->sprite == nullptr) {
+		cerr << "can not load animation frame for dynamic object: " << sName << "\n";
+		return;
 	}
 
-	gfx->DrawPartialSprite((px - ox) * 16.0f, (py - oy)*16.0f, m_pSprite, nSheetOffsetX, nSheetOffsetY, 16, 16);
+	gfx->DrawPartialSprite((px - ox) * 16.0f, (py - oy)*16.0f, frame->sprite, frame->ox, frame->oy, frame->frameSize, frame->frameSize);
 }
 
 void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)

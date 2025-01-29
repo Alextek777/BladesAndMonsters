@@ -11,6 +11,18 @@ Assets::~Assets()
 {
 }
 
+void Assets::LoadAnimations() {
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::EAST, 8, 100, "animations/witty/walking/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::WEST, 8, 100, "animations/witty/walking/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::NORTH, 8, 100, "animations/witty/walking/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, 8, 100, "animations/witty/walking/east.png");
+
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::EAST, 8, 100, "animations/witty/walking/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::WEST, 8, 100, "animations/witty/walking/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::NORTH, 8, 100, "animations/witty/walking/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, 8, 100, "animations/witty/walking/east.png");
+}
+
 void Assets::LoadSprites()
 {
 	auto load = [&](std::string sName, std::string sFileName)
@@ -20,7 +32,6 @@ void Assets::LoadSprites()
 	};
 
 	load("village", "sprites/isometric_demo.png");
-	load("player", "sprites/player.png");
 }
 
 void Assets::LoadMaps()
