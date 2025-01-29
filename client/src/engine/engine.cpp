@@ -17,6 +17,7 @@ bool Engine::OnUserCreate()
     Assets::get().LoadAnimations();
 
     m_pPlayer = new cDynamic_Creature_Witty();
+    m_vecDynamics.push_back(m_pPlayer);
 
 	ChangeMap("village", 10, 10);
     
@@ -134,13 +135,18 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         m_pPlayer->vx = 40.0f;
     
 
-    m_pPlayer->Update(fElapsedTime, m_pPlayer);
-	m_pPlayer->DrawSelf(this, 0, 0);
-
 
     //----------------------------------------- player END -------------------------------------------
 
 
+    std::sort(m_vecDynamics.begin(), m_vecDynamics.end(), [](const cDynamic* a, const cDynamic* b) {
+        return a->py < b->py;
+    });
+
+    for (auto dynamic : m_vecDynamics) {
+        dynamic->Update(fElapsedTime, m_pPlayer);
+	    dynamic->DrawSelf(this, 0, 0);
+    }
 
     // Draw Selected Cell - Has varying alpha components
     SetPixelMode(olc::Pixel::ALPHA);
@@ -179,7 +185,7 @@ void Engine::ChangeMap(string sMapName, float x, float y)
 	m_pPlayer->py = y;
 
 	// Create new dynamics from map
-	// m_pCurrentMap->PopulateDynamics(m_vecDynamics);
+	m_pCurrentMap->PopulateDynamics(m_vecDynamics);
 
 	// // Create new dynamics from quests
 	// for (auto q : m_listQuests)

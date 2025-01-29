@@ -36,6 +36,10 @@ public:
 		return m_animationHandler.getAnimationFrame(name, state, direction, counter);
 	}
 
+	AnimationFrame* GetAnimationFrame(string &name, uint16_t counter) {
+		return m_animationHandler.getAnimationFrame(name, e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, counter);
+	}
+
 	void LoadAnimations();
 	void LoadSprites();
     void LoadMaps();

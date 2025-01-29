@@ -26,6 +26,10 @@ public:
 	bool bIsAttackable;
 	string sName;
 
+protected:
+	int m_nGraphicCounter;
+	float m_fTimer;
+
 public:
 	virtual void DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {}
 	virtual void Update(float fElapsedTime, cDynamic* player = nullptr) {}
@@ -42,8 +46,6 @@ public:
 	cDynamic_Creature(string n);
 
 protected:
-	float m_fTimer;
-	int m_nGraphicCounter;
 	e_FactionDirection m_nFacingDirection;
 	e_GraphicsState m_nGraphicState;
 
@@ -78,4 +80,14 @@ public:
 
 public:
 	void PerformAttack() override;
+};
+
+
+class cDynamic_Object : public cDynamic 
+{
+public:
+	cDynamic_Object(string, float, float);
+
+	void DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) override;
+	void Update(float fElapsedTime, cDynamic* player = nullptr) override;
 };

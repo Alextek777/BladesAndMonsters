@@ -136,3 +136,39 @@ void cDynamic_Creature_Witty::PerformAttack()
 
 	// pEquipedWeapon->OnUse(this);
 }
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+cDynamic_Object::cDynamic_Object(string name, float px, float py) : cDynamic(name) {
+	m_nGraphicCounter = rand() % 16;
+	bIsAttackable = false;
+	this->px = px;
+	this->py = py;
+}
+
+void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
+	AnimationFrame* frame;
+	try
+	{
+		frame = Assets::get().GetAnimationFrame(sName, m_nGraphicCounter);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "can not load animation frame for dynamic object:" << sName << " error: " << e.what() << '\n';
+		return;
+	}
+
+	gfx->DrawPartialSprite((px - ox), (py - oy), frame->sprite, frame->ox, frame->oy, frame->frameSize, frame->frameSize);
+}
+
+void cDynamic_Object::Update(float fElapsedTime, cDynamic* player) {
+	m_fTimer += fElapsedTime;
+	if (m_fTimer >= 0.12f)
+	{
+		m_fTimer -= 0.12f;
+		m_nGraphicCounter++;
+		m_nGraphicCounter %= 16;
+	}
+}

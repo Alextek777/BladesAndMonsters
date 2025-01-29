@@ -6,6 +6,8 @@
 
 using namespace std;
 
+class cDynamic;
+
 class cMap
 {
 
@@ -27,6 +29,12 @@ public:
 	int GetIndex(int x, int y);
 	bool GetSolid(int x, int y);
 	bool Create(string fileData, olc::Sprite* sprite, string name);
+
+
+	virtual bool PopulateDynamics(vector<cDynamic*> &vecDyns)
+	{
+		return false;
+	}
 
 private:
 	int *m_indices = nullptr;
