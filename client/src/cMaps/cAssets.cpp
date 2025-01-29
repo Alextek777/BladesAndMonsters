@@ -32,6 +32,7 @@ void Assets::LoadSprites()
 	{
 		olc::Sprite* s = new olc::Sprite(sFileName);
 		m_mapSprites[sName] = s;
+		m_mapDecal[sName] = new olc::Decal(s);
 	};
 
 	load("village", "sprites/isometric_demo.png");

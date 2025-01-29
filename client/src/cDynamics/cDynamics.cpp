@@ -107,7 +107,10 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 		return;
 	}
 
-	gfx->DrawPartialSprite((px - ox), (py - oy), frame->sprite, frame->ox, frame->oy, frame->frameSize, frame->frameSize);
+	olc::vf2d pos((px - ox), (py - oy));
+	olc::vf2d source_Pos(frame->ox, frame->oy);
+	olc::vf2d source_Size(frame->frameSize, frame->frameSize);
+	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 }
 
 void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
@@ -160,7 +163,10 @@ void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
 		return;
 	}
 
-	gfx->DrawPartialSprite((px - ox), (py - oy), frame->sprite, frame->ox, frame->oy, frame->frameSize, frame->frameSize);
+	olc::vf2d pos((px - ox), (py - oy));
+	olc::vf2d source_Pos(frame->ox, frame->oy);
+	olc::vf2d source_Size(frame->frameSize, frame->frameSize);
+	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 }
 
 void cDynamic_Object::Update(float fElapsedTime, cDynamic* player) {

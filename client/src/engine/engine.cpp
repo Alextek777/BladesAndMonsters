@@ -38,8 +38,6 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 bool Engine::UpdateLocalMap(float fElapsedTime)
 {   
     Clear(olc::WHITE);
-    // Draw World - has binary transparancy so enable masking
-    SetPixelMode(olc::Pixel::MASK);
 
     // Get Mouse in world
     olc::vi2d vMouse = { GetMouseX(), GetMouseY() };
@@ -76,6 +74,9 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         };
     };
 
+    // Draw World - has binary transparancy so enable masking
+    SetPixelMode(olc::Pixel::MASK);
+
     // TODO: move map drawing in map.DrawSelf() 
     
     // (0,0) is at top, defined by m_pCurrentMap->vOrigin, so draw from top to bottom
@@ -86,34 +87,60 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         {
             // Convert cell coordinate to world space
             olc::vi2d vWorld = ToScreen(x, y);
+            olc::vi2d source_pos;
+            olc::vi2d source_size;
             
             switch(m_pCurrentMap->GetIndex(x, y))
             {
             case 0:
                 // Invisble Tile
-                DrawPartialSprite(vWorld.x, vWorld.y, Assets::get().GetSprite(m_pCurrentMap->sName), 1 * m_pCurrentMap->vTileSize.x, 0, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y);
+                source_pos.x = 1 * m_pCurrentMap->vTileSize.x;
+                source_pos.y = 0;
+                source_size.x = m_pCurrentMap->vTileSize.x;
+                source_size.y = m_pCurrentMap->vTileSize.y;
                 break;
             case 1:
                 // Visible Tile
-                DrawPartialSprite(vWorld.x, vWorld.y, Assets::get().GetSprite(m_pCurrentMap->sName), 2 * m_pCurrentMap->vTileSize.x, 0, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y);
+                source_pos.x = 2 * m_pCurrentMap->vTileSize.x;
+                source_pos.y = 0;
+                source_size.x = m_pCurrentMap->vTileSize.x;
+                source_size.y = m_pCurrentMap->vTileSize.y;
                 break;
             case 2:
                 // Tree
-                DrawPartialSprite(vWorld.x, vWorld.y - m_pCurrentMap->vTileSize.y, Assets::get().GetSprite(m_pCurrentMap->sName), 0 * m_pCurrentMap->vTileSize.x, 1 * m_pCurrentMap->vTileSize.y, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y * 2);
+                vWorld.y = vWorld.y - m_pCurrentMap->vTileSize.y;
+                source_pos.x = 0 * m_pCurrentMap->vTileSize.x;
+                source_pos.y = 1 * m_pCurrentMap->vTileSize.y;
+                source_size.x = m_pCurrentMap->vTileSize.x;
+                source_size.y = m_pCurrentMap->vTileSize.y * 2;
                 break;
             case 3:
                 // Spooky Tree
-                DrawPartialSprite(vWorld.x, vWorld.y - m_pCurrentMap->vTileSize.y, Assets::get().GetSprite(m_pCurrentMap->sName), 1 * m_pCurrentMap->vTileSize.x, 1 * m_pCurrentMap->vTileSize.y, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y * 2);
+                vWorld.y = vWorld.y - m_pCurrentMap->vTileSize.y;
+                source_pos.x = 1 * m_pCurrentMap->vTileSize.x;
+                source_pos.y = 1 * m_pCurrentMap->vTileSize.y;
+                source_size.x = m_pCurrentMap->vTileSize.x;
+                source_size.y = m_pCurrentMap->vTileSize.y * 2;
                 break;
             case 4:
                 // Beach
-                DrawPartialSprite(vWorld.x, vWorld.y - m_pCurrentMap->vTileSize.y, Assets::get().GetSprite(m_pCurrentMap->sName), 2 * m_pCurrentMap->vTileSize.x, 1 * m_pCurrentMap->vTileSize.y, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y * 2);
+                vWorld.y = vWorld.y - m_pCurrentMap->vTileSize.y;
+                source_pos.x = 2 * m_pCurrentMap->vTileSize.x;
+                source_pos.y = 1 * m_pCurrentMap->vTileSize.y;
+                source_size.x = m_pCurrentMap->vTileSize.x;
+                source_size.y = m_pCurrentMap->vTileSize.y * 2;
                 break;
             case 5:
                 // Water
-                DrawPartialSprite(vWorld.x, vWorld.y - m_pCurrentMap->vTileSize.y, Assets::get().GetSprite(m_pCurrentMap->sName), 3 * m_pCurrentMap->vTileSize.x, 1 * m_pCurrentMap->vTileSize.y, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y * 2);
+                vWorld.y = vWorld.y - m_pCurrentMap->vTileSize.y;
+                source_pos.x = 3 * m_pCurrentMap->vTileSize.x;
+                source_pos.y = 1 * m_pCurrentMap->vTileSize.y;
+                source_size.x = m_pCurrentMap->vTileSize.x;
+                source_size.y = m_pCurrentMap->vTileSize.y * 2;
                 break;
-            }			
+            }
+
+            DrawPartialDecal(vWorld, Assets::get().GetDecal(m_pCurrentMap->sName), source_pos, source_size);
         }
     }
 
@@ -133,12 +160,13 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 
     if (GetKey(olc::RIGHT).bHeld)
         m_pPlayer->vx = 40.0f;
-    
-
 
     //----------------------------------------- player END -------------------------------------------
 
 
+    // Draw World - has binary transparancy so enable masking
+    SetPixelMode(olc::Pixel::ALPHA);
+    
     std::sort(m_vecDynamics.begin(), m_vecDynamics.end(), [](const cDynamic* a, const cDynamic* b) {
         return a->py < b->py;
     });
@@ -148,25 +176,24 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 	    dynamic->DrawSelf(this, 0, 0);
     }
 
-    // Draw Selected Cell - Has varying alpha components
-    SetPixelMode(olc::Pixel::ALPHA);
-
-    // Convert selected cell coordinate to world space
-    olc::vi2d vSelectedWorld = ToScreen(vSelected.x, vSelected.y);
-
-    // Draw "highlight" tile
-    DrawPartialSprite(vSelectedWorld.x, vSelectedWorld.y, Assets::get().GetSprite(m_pCurrentMap->sName), 0 * m_pCurrentMap->vTileSize.x, 0, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y);
-
     // Go back to normal drawing with no expected transparency
     SetPixelMode(olc::Pixel::NORMAL);
 
-    // Draw Hovered Cell Boundary
-    //DrawRect(vCell.x * m_pCurrentMap->vTileSize.x, vCell.y * m_pCurrentMap->vTileSize.y, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y, olc::RED);
+    // // Convert selected cell coordinate to world space
+    // olc::vi2d vSelectedWorld = ToScreen(vSelected.x, vSelected.y);
+
+    // // Draw "highlight" tile
+    // DrawPartialSprite(vSelectedWorld.x, vSelectedWorld.y, Assets::get().GetSprite(m_pCurrentMap->sName), 0 * m_pCurrentMap->vTileSize.x, 0, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y);
+
+
+
+    // // Draw Hovered Cell Boundary
+    // //DrawRect(vCell.x * m_pCurrentMap->vTileSize.x, vCell.y * m_pCurrentMap->vTileSize.y, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y, olc::RED);
             
-    // Draw Debug Info
-    DrawString(4, 4, "Mouse   : " + std::to_string(vMouse.x) + ", " + std::to_string(vMouse.y), olc::BLACK);
-    DrawString(4, 14, "Cell    : " + std::to_string(vCell.x) + ", " + std::to_string(vCell.y), olc::BLACK);
-    DrawString(4, 24, "Selected: " + std::to_string(vSelected.x) + ", " + std::to_string(vSelected.y), olc::BLACK);
+    // // Draw Debug Info
+    // DrawString(4, 4, "Mouse   : " + std::to_string(vMouse.x) + ", " + std::to_string(vMouse.y), olc::BLACK);
+    // DrawString(4, 14, "Cell    : " + std::to_string(vCell.x) + ", " + std::to_string(vCell.y), olc::BLACK);
+    // DrawString(4, 24, "Selected: " + std::to_string(vSelected.x) + ", " + std::to_string(vSelected.y), olc::BLACK);
 
     return true;
 }

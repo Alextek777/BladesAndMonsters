@@ -27,6 +27,11 @@ public:
 		return m_mapSprites[name];
 	}
 
+	olc::Decal* GetDecal(std::string name)
+	{
+		return m_mapDecal[name];
+	}
+
 	cMap* GetMap(std::string name)
 	{
 		return m_mapMaps[name];
@@ -48,6 +53,8 @@ private:
 	~Assets();	
 
 	std::map<std::string, olc::Sprite*> m_mapSprites;
+	std::map<std::string, olc::Decal*> m_mapDecal;
+
 	std::map<std::string, cMap*> m_mapMaps;
 	cAnimationHandler m_animationHandler;
 };

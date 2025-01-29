@@ -22,14 +22,14 @@ public:
 
 
 struct AnimationFrame {
-    olc::Sprite* sprite;
+    olc::Decal* decal;
     uint16_t ox, oy;
     uint16_t frameSize;
 
     AnimationFrame(){}
 
     AnimationFrame(olc::Sprite* sprite, uint16_t ox, uint16_t oy, uint16_t frameSize) {
-        this->sprite = sprite;
+        this->decal = new olc::Decal(sprite);
         this->ox = ox;
         this->oy = oy; // todo: might be unnececarry, all animations should start from upper corner
         this->frameSize = frameSize;
@@ -52,9 +52,9 @@ struct Animation {
         this->frameCount = frameCount;
         this->frameSize = frameSize;
 
-
+        olc::Decal* decal = new olc::Decal(sprite);
         for (int i = 0; i < frameCount; i++) {
-            frameVec[i].sprite = sprite;
+            frameVec[i].decal = decal;
             frameVec[i].ox = i * frameSize;
             frameVec[i].oy = 0;
             frameVec[i].frameSize = frameSize;
