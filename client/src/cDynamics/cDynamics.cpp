@@ -28,9 +28,8 @@ cDynamic::~cDynamic()
 /////////////////////////////////////////////////////////////////////
 
 
-cDynamic_Creature::cDynamic_Creature(string name, olc::Sprite *sprite) : cDynamic(name)
+cDynamic_Creature::cDynamic_Creature(string name) : cDynamic(name)
 {
-	m_pSprite = sprite;
 	nHealth = 10;
 	nHealthMax = 10;
 	m_nFacingDirection = SOUTH;
@@ -64,7 +63,7 @@ void cDynamic_Creature::Update(float fElapsedTime, cDynamic* player)
 		{
 			m_fTimer -= 0.2f;
 			m_nGraphicCounter++;
-			m_nGraphicCounter %= 15;
+			m_nGraphicCounter %= 16;
 		}
 
 		if (fabs(vx) > 0 || fabs(vy) > 0)
@@ -108,7 +107,7 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 		return;
 	}
 
-	gfx->DrawPartialSprite((px - ox) * 16.0f, (py - oy)*16.0f, frame->sprite, frame->ox, frame->oy, frame->frameSize, frame->frameSize);
+	gfx->DrawPartialSprite((px - ox), (py - oy), frame->sprite, frame->ox, frame->oy, frame->frameSize, frame->frameSize);
 }
 
 void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
@@ -121,7 +120,7 @@ void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-cDynamic_Creature_Witty::cDynamic_Creature_Witty() : cDynamic_Creature("witty", Assets::get().GetSprite("player"))
+cDynamic_Creature_Witty::cDynamic_Creature_Witty() : cDynamic_Creature("witty")
 {
 	bFriendly = true;
 	nHealth = 9;

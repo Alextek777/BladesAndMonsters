@@ -39,10 +39,9 @@ public:
 class cDynamic_Creature : public cDynamic
 {
 public:
-	cDynamic_Creature(string n, olc::Sprite *sprite);
+	cDynamic_Creature(string n);
 
 protected:
-	olc::Sprite *m_pSprite;
 	float m_fTimer;
 	int m_nGraphicCounter;
 	e_FactionDirection m_nFacingDirection;

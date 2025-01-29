@@ -18,7 +18,7 @@ bool Engine::OnUserCreate()
 
     m_pPlayer = new cDynamic_Creature_Witty();
 
-	ChangeMap("village", 5, 5);
+	ChangeMap("village", 10, 10);
     
     return true;
 }
@@ -75,8 +75,7 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         };
     };
 
-
-    // todo: move map drawing in map.DrawSelf() 
+    // TODO: move map drawing in map.DrawSelf() 
     
     // (0,0) is at top, defined by m_pCurrentMap->vOrigin, so draw from top to bottom
     // to ensure tiles closest to camera are drawn last
@@ -118,28 +117,23 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
     }
 
     //----------------------------------------- player -------------------------------------------
-    // todo: incapsulate all user input in handler func
+    // TODO: incapsulate all user input in handler func
 
     m_pPlayer->vx = 0;
     m_pPlayer->vy = 0;
     if (GetKey(olc::UP).bHeld)
-        m_pPlayer->vy = -3.0f;
+        m_pPlayer->vy = -40.0f;
 
     if (GetKey(olc::DOWN).bHeld)
-        m_pPlayer->vy = 3.0f;
+        m_pPlayer->vy = 40.0f;
 
     if (GetKey(olc::LEFT).bHeld)
-        m_pPlayer->vx = -3.0f;
+        m_pPlayer->vx = -40.0f;
 
     if (GetKey(olc::RIGHT).bHeld)
-        m_pPlayer->vx = 3.0f;
-        
+        m_pPlayer->vx = 40.0f;
+    
 
-	// fCameraPosX = m_pPlayer->px;
-	// fCameraPosY = m_pPlayer->py;
-
-	// float fOffsetX = fCameraPosX - (float)nVisibleTilesX / 2.0f;
-	// float fOffsetY = fCameraPosY - (float)nVisibleTilesY / 2.0f;
     m_pPlayer->Update(fElapsedTime, m_pPlayer);
 	m_pPlayer->DrawSelf(this, 0, 0);
 
@@ -181,8 +175,8 @@ void Engine::ChangeMap(string sMapName, float x, float y)
 	m_pCurrentMap = Assets::get().GetMap(sMapName);
 
 	// Update player location
-	// m_pPlayer->px = x;
-	// m_pPlayer->py = y;
+	m_pPlayer->px = x;
+	m_pPlayer->py = y;
 
 	// Create new dynamics from map
 	// m_pCurrentMap->PopulateDynamics(m_vecDynamics);
