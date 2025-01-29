@@ -37,6 +37,8 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 bool Engine::UpdateLocalMap(float fElapsedTime)
 {   
     Clear(olc::WHITE);
+    // Draw World - has binary transparancy so enable masking
+    SetPixelMode(olc::Pixel::MASK);
 
     // Get Mouse in world
     olc::vi2d vMouse = { GetMouseX(), GetMouseY() };
@@ -72,9 +74,6 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
             (m_pCurrentMap->vOrigin.y * m_pCurrentMap->vTileSize.y) + (x + y) * (m_pCurrentMap->vTileSize.y / 2)
         };
     };
-    
-    // Draw World - has binary transparancy so enable masking
-    SetPixelMode(olc::Pixel::MASK);
 
     // (0,0) is at top, defined by m_pCurrentMap->vOrigin, so draw from top to bottom
     // to ensure tiles closest to camera are drawn last
@@ -115,6 +114,36 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         }
     }
 
+
+    //----------------------------------------- player -------------------------------------------
+    m_pPlayer->vx = 0;
+    m_pPlayer->vy = 0;
+    if (GetKey(olc::UP).bHeld)
+        m_pPlayer->vy = -3.0f;
+
+    if (GetKey(olc::DOWN).bHeld)
+        m_pPlayer->vy = 3.0f;
+
+    if (GetKey(olc::LEFT).bHeld)
+        m_pPlayer->vx = -3.0f;
+
+    if (GetKey(olc::RIGHT).bHeld)
+        m_pPlayer->vx = 3.0f;
+        
+
+	// fCameraPosX = m_pPlayer->px;
+	// fCameraPosY = m_pPlayer->py;
+
+	// float fOffsetX = fCameraPosX - (float)nVisibleTilesX / 2.0f;
+	// float fOffsetY = fCameraPosY - (float)nVisibleTilesY / 2.0f;
+    m_pPlayer->Update(fElapsedTime, m_pPlayer);
+	m_pPlayer->DrawSelf(this, 0, 0);
+
+
+    //----------------------------------------- player END -------------------------------------------
+
+
+
     // Draw Selected Cell - Has varying alpha components
     SetPixelMode(olc::Pixel::ALPHA);
 
@@ -134,37 +163,6 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
     DrawString(4, 4, "Mouse   : " + std::to_string(vMouse.x) + ", " + std::to_string(vMouse.y), olc::BLACK);
     DrawString(4, 14, "Cell    : " + std::to_string(vCell.x) + ", " + std::to_string(vCell.y), olc::BLACK);
     DrawString(4, 24, "Selected: " + std::to_string(vSelected.x) + ", " + std::to_string(vSelected.y), olc::BLACK);
-
-
-
-
-    //----------------------------------------- player -------------------------------------------
-    m_pPlayer->vx = 0;
-    m_pPlayer->vy = 0;
-    if (GetKey(olc::UP).bHeld)
-        m_pPlayer->vy = -7.0f;
-
-    if (GetKey(olc::DOWN).bHeld)
-        m_pPlayer->vy = 7.0f;
-
-    if (GetKey(olc::LEFT).bHeld)
-        m_pPlayer->vx = -7.0f;
-
-    if (GetKey(olc::RIGHT).bHeld)
-        m_pPlayer->vx = 7.0f;
-        
-
-	// fCameraPosX = m_pPlayer->px;
-	// fCameraPosY = m_pPlayer->py;
-
-	// float fOffsetX = fCameraPosX - (float)nVisibleTilesX / 2.0f;
-	// float fOffsetY = fCameraPosY - (float)nVisibleTilesY / 2.0f;
-    m_pPlayer->Update(fElapsedTime, m_pPlayer);
-	m_pPlayer->DrawSelf(this, 0, 0);
-
-
-    //----------------------------------------- player END -------------------------------------------
-
 
     return true;
 }

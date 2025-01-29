@@ -97,6 +97,7 @@ void cDynamic_Creature::KnockBack(float dx, float dy, float dist)
 
 void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 {
+	// TODO: add exception and handling in GetAnimationFrame...
 	AnimationFrame* frame = Assets::get().GetAnimationFrame(sName, m_nGraphicState, m_nFacingDirection, m_nGraphicCounter);
 
 	if (frame == nullptr || frame->sprite == nullptr) {

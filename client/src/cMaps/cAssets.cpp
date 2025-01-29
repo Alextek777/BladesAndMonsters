@@ -17,10 +17,10 @@ void Assets::LoadAnimations() {
 	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::NORTH, 8, 100, "animations/witty/walking/east.png");
 	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, 8, 100, "animations/witty/walking/east.png");
 
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::EAST, 8, 100, "animations/witty/walking/east.png");
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::WEST, 8, 100, "animations/witty/walking/east.png");
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::NORTH, 8, 100, "animations/witty/walking/east.png");
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, 8, 100, "animations/witty/walking/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::EAST, 6, 100, "animations/witty/standing/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::WEST, 6, 100, "animations/witty/standing/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::NORTH, 6, 100, "animations/witty/standing/east.png");
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, 6, 100, "animations/witty/standing/east.png");
 }
 
 void Assets::LoadSprites()
