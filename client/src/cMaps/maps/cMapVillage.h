@@ -1,5 +1,5 @@
 #pragma once
-#include "cMap.h"
+#include "../cMap.h"
 
 
 class cMap_Village : public cMap

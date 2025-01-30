@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "cMaps/cAssets.h"
+#include "cAssets/cAssets.h"
 #include "cDynamics/cDynamics.h"
 
 using namespace std;

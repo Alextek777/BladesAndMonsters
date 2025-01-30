@@ -1,6 +1,6 @@
 
 #include "cAssets.h"
-#include "cMapVillage.h"
+#include "cMaps/maps/cMapVillage.h"
 
 Assets::Assets()
 {

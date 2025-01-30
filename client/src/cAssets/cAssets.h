@@ -3,8 +3,8 @@
 #include <olcPixelGameEngine.h>
 #include <map>
 
-#include "cMap.h"
-#include "cAnimations.h"
+#include "cMaps/cMap.h"
+#include "cAnimations/cAnimations.h"
 
 class cMap;
 class cAnimationHandler;
