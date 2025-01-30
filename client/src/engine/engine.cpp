@@ -19,7 +19,7 @@ bool Engine::OnUserCreate()
     m_pPlayer = new cDynamic_Creature_Witty();
     m_vecDynamics.push_back(m_pPlayer);
 
-	ChangeMap("village", 0, 0);
+	ChangeMap("village", 200, 200);
     
     return true;
 }
@@ -39,29 +39,9 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 {   
     Clear(olc::BLANK);
 
-    //----------------------------------------- player -------------------------------------------
-    // TODO: incapsulate all user input in handler func
-
-    fCameraPosX = m_pPlayer->px - ScreenWidth() / 2;
-    fCameraPosY = m_pPlayer->py - ScreenHeight() / 2;
-
-    m_pCurrentMap->DrawStaticMap(fCameraPosX, fCameraPosY);
-
-    m_pPlayer->vx = 0;
-    m_pPlayer->vy = 0;
-    if (GetKey(olc::UP).bHeld)
-        m_pPlayer->vy = -40.0f;
-
-    if (GetKey(olc::DOWN).bHeld)
-        m_pPlayer->vy = 40.0f;
-
-    if (GetKey(olc::LEFT).bHeld)
-        m_pPlayer->vx = -40.0f;
-
-    if (GetKey(olc::RIGHT).bHeld)
-        m_pPlayer->vx = 40.0f;
-
-    //----------------------------------------- player END -------------------------------------------
+    UpdateStaticMap(fElapsedTime);
+    HandleUserInput(fElapsedTime);
+    
     
     std::sort(m_vecDynamics.begin(), m_vecDynamics.end(), [](const cDynamic* a, const cDynamic* b) {
         return a->py < b->py;
@@ -98,4 +78,58 @@ void Engine::ChangeMap(string sMapName, float x, float y)
 	// // Create new dynamics from quests
 	// for (auto q : m_listQuests)
 	// 	q->PopulateDynamics(m_vecDynamics, m_pCurrentMap->sName);
+}
+
+
+void Engine::UpdateStaticMap(float fElapsedTime) {
+    olc::vi2d mouse = GetMousePos();
+    bool updateMap = false;
+
+    if (mouse.x < 10 ) {
+        fCameraPosX -= 100 * fElapsedTime;
+        updateMap = true;
+    }
+    
+    if ( mouse.x > ScreenWidth() - 10) {
+        fCameraPosX += 100 * fElapsedTime;
+        updateMap = true;
+    }
+    
+    if (mouse.y < 10 ) {
+        fCameraPosY -= 100 * fElapsedTime;
+        updateMap = true;
+    }
+    
+    if (mouse.y > ScreenHeight() - 10 ) {
+        fCameraPosY += 100 * fElapsedTime;
+        updateMap = true;
+    }
+
+    if (updateMap) {
+        m_pCurrentMap->DrawStaticMap(fCameraPosX, fCameraPosY);
+    }
+}
+
+void Engine::HandleUserInput(float fElapsedTime) {
+    m_pPlayer->vx = 0;
+    m_pPlayer->vy = 0;
+
+    // Walk 
+    if (GetKey(olc::UP).bHeld) 
+        m_pPlayer->vy = -40.0f;
+
+    if (GetKey(olc::DOWN).bHeld)
+        m_pPlayer->vy = 40.0f;
+
+    if (GetKey(olc::LEFT).bHeld)
+        m_pPlayer->vx = -40.0f;
+
+    if (GetKey(olc::RIGHT).bHeld)
+        m_pPlayer->vx = 40.0f;
+
+
+    // Atack
+    if (GetKey(olc::SPACE).bPressed) 
+        m_pPlayer->PerformAttack();
+
 }

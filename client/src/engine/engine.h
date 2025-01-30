@@ -45,6 +45,8 @@ protected:
 	bool OnUserUpdate(float fElapsedTime) override;
 
 	bool UpdateLocalMap(float fElapsedTime);
+	void UpdateStaticMap(float fElapsedTime);
+	void HandleUserInput(float fElapsedTime);
 
 public:
     void ChangeMap(string sMapName, float x, float y);

@@ -59,17 +59,21 @@ void cDynamic_Creature::Update(float fElapsedTime, cDynamic* player)
 	{
 		bSolidVsDyn = true;
 		m_fTimer += fElapsedTime;
-		if (m_fTimer >= 0.2f)
+		if (m_fTimer >= 0.1f)
 		{
-			m_fTimer -= 0.2f;
-			m_nGraphicCounter++;
-			m_nGraphicCounter %= 16;
+			m_fTimer = 0;
+			m_nGraphicCounter = (m_nGraphicCounter + 1) % 16;
 		}
 
-		if (fabs(vx) > 0 || fabs(vy) > 0)
+		if (fabs(vx) > 1 || fabs(vy) > 1)
 			m_nGraphicState = WALKING;
-		else
-			m_nGraphicState = STANDING;
+		else {
+			// if performing attack wait till it ends
+			if (m_nGraphicState != ATTACKING || m_nGraphicCounter == 0) {
+				m_nGraphicState = STANDING;		
+			}	
+		}
+
 
 		if (nHealth <= 0)
 			m_nGraphicState = DEAD;
@@ -78,6 +82,9 @@ void cDynamic_Creature::Update(float fElapsedTime, cDynamic* player)
 		if (vx > 0.0f) m_nFacingDirection = EAST;
 		if (vy < -0.0f) m_nFacingDirection = NORTH;
 		if (vy > 0.0f) m_nFacingDirection = SOUTH;
+
+		player->px += player->vx * fElapsedTime;
+		player->py += player->vy * fElapsedTime;
 
 		Behaviour(fElapsedTime, player);
 	}
@@ -115,8 +122,6 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 
 void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
 {
-	player->px += player->vx * fElapsedTime;
-	player->py += player->vy * fElapsedTime;
 }
 
 
@@ -134,6 +139,8 @@ cDynamic_Creature_Witty::cDynamic_Creature_Witty() : cDynamic_Creature("witty")
 
 void cDynamic_Creature_Witty::PerformAttack()
 {
+	m_nGraphicState = ATTACKING;
+	m_nGraphicCounter = 1;
 	// if (pEquipedWeapon == nullptr)
 	// 	return;
 
@@ -145,7 +152,7 @@ void cDynamic_Creature_Witty::PerformAttack()
 
 
 cDynamic_Object::cDynamic_Object(string name, float px, float py) : cDynamic(name) {
-	m_nGraphicCounter = 0;
+	m_nGraphicCounter = rand() % 5;
 	bIsAttackable = false;
 	this->px = px;
 	this->py = py;
@@ -173,8 +180,7 @@ void cDynamic_Object::Update(float fElapsedTime, cDynamic* player) {
 	m_fTimer += fElapsedTime;
 	if (m_fTimer >= 0.12f)
 	{
-		m_fTimer -= 0.12f;
-		m_nGraphicCounter++;
-		m_nGraphicCounter %= 16;
+		m_fTimer = 0;
+		m_nGraphicCounter = (m_nGraphicCounter + 1) % 16;
 	}
 }

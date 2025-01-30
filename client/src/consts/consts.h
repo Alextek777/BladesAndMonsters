@@ -1,5 +1,5 @@
 #pragma once 
 
 
-enum e_FactionDirection { SOUTH, WEST, NORTH, EAST, DEFAULT_FD };
-enum e_GraphicsState { STANDING, WALKING, CELEBRATING, DEAD, DEFAULT_GS };
+enum e_FactionDirection { DEFAULT_FD, SOUTH, WEST, NORTH, EAST };
+enum e_GraphicsState { DEFAULT_GS, STANDING, WALKING, CELEBRATING, DEAD, ATTACKING  };
