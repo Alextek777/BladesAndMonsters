@@ -4,13 +4,19 @@
 
 cMap::cMap()
 {
+
+}
+
+cMap::cMap(olc::PixelGameEngine *gfx) {
 	pSprite = nullptr;
 	nWidth = 0;
 	nHeight = 0;
 	m_solids = nullptr;
 	m_indices = nullptr;
-}
 
+	this->gfx = gfx;
+	backgroundLayer = gfx->CreateLayer();
+}
 
 cMap::~cMap()
 {

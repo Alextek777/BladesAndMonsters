@@ -13,6 +13,7 @@ class cMap
 
 public:
 	cMap();
+	cMap(olc::PixelGameEngine *gfx);
 	~cMap();
 
 public:
@@ -36,11 +37,14 @@ public:
 		return false;
 	}
 
-	virtual bool DrawStaticMap(olc::PixelGameEngine *gfx) {
+	virtual bool DrawStaticMap(float ox, float oy) {
 		return false;
 	}
 
-private:
+protected:
 	int *m_indices = nullptr;
 	bool *m_solids = nullptr;
+
+	olc::PixelGameEngine *gfx;
+	int backgroundLayer;
 };

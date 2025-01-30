@@ -47,7 +47,7 @@ public:
 
 	void LoadAnimations();
 	void LoadSprites();
-    void LoadMaps();
+    void LoadMaps(olc::PixelGameEngine* gfx);
 private:
 	Assets();
 	~Assets();	

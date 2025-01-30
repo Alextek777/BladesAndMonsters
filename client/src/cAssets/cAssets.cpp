@@ -37,12 +37,12 @@ void Assets::LoadSprites()
 	load("village", "sprites/isometric_demo.png");
 }
 
-void Assets::LoadMaps()
+void Assets::LoadMaps(olc::PixelGameEngine* gfx)
 {
     auto load = [&](cMap* m)
 	{
 		m_mapMaps[m->sName] = m;
 	};
 
-	load(new cMap_Village());
+	load(new cMap_Village(gfx));
 }

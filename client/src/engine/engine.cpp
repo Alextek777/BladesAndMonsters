@@ -13,15 +13,13 @@ Engine::Engine()
 bool Engine::OnUserCreate()
 {
 	Assets::get().LoadSprites();
-	Assets::get().LoadMaps();
+	Assets::get().LoadMaps(this);
     Assets::get().LoadAnimations();
 
     m_pPlayer = new cDynamic_Creature_Witty();
     m_vecDynamics.push_back(m_pPlayer);
 
-	ChangeMap("village", 10, 10);
-
-    m_pCurrentMap->DrawStaticMap(this);
+	ChangeMap("village", 0, 0);
     
     return true;
 }
@@ -43,6 +41,11 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 
     //----------------------------------------- player -------------------------------------------
     // TODO: incapsulate all user input in handler func
+
+    fCameraPosX = m_pPlayer->px - ScreenWidth() / 2;
+    fCameraPosY = m_pPlayer->py - ScreenHeight() / 2;
+
+    m_pCurrentMap->DrawStaticMap(fCameraPosX, fCameraPosY);
 
     m_pPlayer->vx = 0;
     m_pPlayer->vy = 0;
@@ -68,7 +71,7 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 
     for (auto dynamic : m_vecDynamics) {
         dynamic->Update(fElapsedTime, m_pPlayer);
-	    dynamic->DrawSelf(this, 0, 0);
+	    dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
     }
 
     SetPixelMode(olc::Pixel::NORMAL);

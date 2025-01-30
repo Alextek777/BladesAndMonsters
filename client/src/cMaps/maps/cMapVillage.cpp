@@ -1,7 +1,7 @@
 #include "cMapVillage.h"
 
 
-cMap_Village::cMap_Village()
+cMap_Village::cMap_Village(olc::PixelGameEngine* gfx) : cMap(gfx)
 {
 	Create("maps/village.lvl", Assets::get().GetSprite("village"), "village");
 }
@@ -31,8 +31,7 @@ bool cMap_Village::PopulateDynamics(vector<cDynamic*> &vecDyns) {
 	return true;
 }
 
-bool cMap_Village::DrawStaticMap(olc::PixelGameEngine *gfx) {
-	int backgroundLayer = gfx->CreateLayer();
+bool cMap_Village::DrawStaticMap(float ox, float oy) {
 	gfx->SetDrawTarget(backgroundLayer);
 
     auto ToScreen = [&](int x, int y)
@@ -108,6 +107,9 @@ bool cMap_Village::DrawStaticMap(olc::PixelGameEngine *gfx) {
                 break;
             }
 
+
+            vWorld.x -= ox;
+            vWorld.y -= oy;
             gfx->DrawPartialSprite(vWorld, Assets::get().GetSprite(sName), source_pos, source_size);
         }
     }
