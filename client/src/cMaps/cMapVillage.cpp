@@ -13,6 +13,8 @@ bool cMap_Village::PopulateDynamics(vector<cDynamic*> &vecDyns) {
 	vecDyns.push_back(new cDynamic_Object("TreeAutumn", 240, 200));
 	vecDyns.push_back(new cDynamic_Object("TreeAutumn", 200, 240));
 	vecDyns.push_back(new cDynamic_Object("TreeAutumn", 280, 240));
+    vecDyns.push_back(new cDynamic_Object("TreeAutumn", 100, 100));
+
 
 	// // Add Items
 	// vecDyns.push_back(new cDynamic_Item(10, 10, RPG_Assets::get().GetItem("Small Health")));

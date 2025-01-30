@@ -41,31 +41,6 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 {   
     Clear(olc::BLANK);
 
-    // // Get Mouse in world
-    // olc::vi2d vMouse = { GetMouseX(), GetMouseY() };
-    
-    // // Work out active cell
-    // olc::vi2d vCell = { vMouse.x / m_pCurrentMap->vTileSize.x, vMouse.y / m_pCurrentMap->vTileSize.y };
-
-    // // Work out mouse offset into cell
-    // olc::vi2d vOffset = { vMouse.x % m_pCurrentMap->vTileSize.x, vMouse.y % m_pCurrentMap->vTileSize.y };
-
-    // // Sample into cell offset colour
-    // olc::Pixel col = Assets::get().GetSprite(m_pCurrentMap->sName)->GetPixel(3 * m_pCurrentMap->vTileSize.x + vOffset.x, vOffset.y);
-
-    // // Work out selected cell by transforming screen cell
-    // olc::vi2d vSelected = 
-    // {
-    //     (vCell.y - m_pCurrentMap->vOrigin.y) + (vCell.x - m_pCurrentMap->vOrigin.x),
-    //     (vCell.y - m_pCurrentMap->vOrigin.y) - (vCell.x - m_pCurrentMap->vOrigin.x) 
-    // };
-
-    // // "Bodge" selected cell by sampling corners
-    // if (col == olc::RED) vSelected += {-1, +0};
-    // if (col == olc::BLUE) vSelected += {+0, -1};
-    // if (col == olc::GREEN) vSelected += {+0, +1};
-    // if (col == olc::YELLOW) vSelected += {+1, +0};
-
     //----------------------------------------- player -------------------------------------------
     // TODO: incapsulate all user input in handler func
 
@@ -84,38 +59,19 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         m_pPlayer->vx = 40.0f;
 
     //----------------------------------------- player END -------------------------------------------
-
-
-    // Draw World - has binary transparancy so enable masking
-    SetPixelMode(olc::Pixel::ALPHA);
     
     std::sort(m_vecDynamics.begin(), m_vecDynamics.end(), [](const cDynamic* a, const cDynamic* b) {
         return a->py < b->py;
     });
+
+    SetPixelMode(olc::Pixel::ALPHA);
 
     for (auto dynamic : m_vecDynamics) {
         dynamic->Update(fElapsedTime, m_pPlayer);
 	    dynamic->DrawSelf(this, 0, 0);
     }
 
-    // Go back to normal drawing with no expected transparency
     SetPixelMode(olc::Pixel::NORMAL);
-
-    // // Convert selected cell coordinate to world space
-    // olc::vi2d vSelectedWorld = ToScreen(vSelected.x, vSelected.y);
-
-    // // Draw "highlight" tile
-    // DrawPartialSprite(vSelectedWorld.x, vSelectedWorld.y, Assets::get().GetSprite(m_pCurrentMap->sName), 0 * m_pCurrentMap->vTileSize.x, 0, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y);
-
-
-
-    // // Draw Hovered Cell Boundary
-    // //DrawRect(vCell.x * m_pCurrentMap->vTileSize.x, vCell.y * m_pCurrentMap->vTileSize.y, m_pCurrentMap->vTileSize.x, m_pCurrentMap->vTileSize.y, olc::RED);
-            
-    // // Draw Debug Info
-    // DrawString(4, 4, "Mouse   : " + std::to_string(vMouse.x) + ", " + std::to_string(vMouse.y), olc::BLACK);
-    // DrawString(4, 14, "Cell    : " + std::to_string(vCell.x) + ", " + std::to_string(vCell.y), olc::BLACK);
-    // DrawString(4, 24, "Selected: " + std::to_string(vSelected.x) + ", " + std::to_string(vSelected.y), olc::BLACK);
 
     return true;
 }
