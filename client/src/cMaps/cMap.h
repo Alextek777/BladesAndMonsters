@@ -31,8 +31,12 @@ public:
 	bool Create(string fileData, olc::Sprite* sprite, string name);
 
 
-	virtual bool PopulateDynamics(vector<cDynamic*> &vecDyns)
-	{
+
+	virtual bool PopulateDynamics(vector<cDynamic*> &vecDyns) {
+		return false;
+	}
+
+	virtual bool DrawStaticMap(olc::PixelGameEngine *gfx) {
 		return false;
 	}
 

@@ -57,4 +57,3 @@ bool cMap::Create(string fileData, olc::Sprite* sprite, string name)
 
 	return false;
 }
-

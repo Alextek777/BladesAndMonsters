@@ -22,7 +22,6 @@ void Assets::LoadAnimations() {
 	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::NORTH, 6, 100, "animations/witty/standing/east.png");
 	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, 6, 100, "animations/witty/standing/west.png");
 
-
 	m_animationHandler.load("TreeAutumn", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, 16, 64, "animations/trees/autumn/default.png");
 }
 

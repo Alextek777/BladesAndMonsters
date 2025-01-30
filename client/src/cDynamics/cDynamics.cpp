@@ -145,7 +145,7 @@ void cDynamic_Creature_Witty::PerformAttack()
 
 
 cDynamic_Object::cDynamic_Object(string name, float px, float py) : cDynamic(name) {
-	m_nGraphicCounter = rand() % 16;
+	m_nGraphicCounter = 0;
 	bIsAttackable = false;
 	this->px = px;
 	this->py = py;

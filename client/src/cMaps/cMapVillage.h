@@ -8,4 +8,6 @@ public:
 	cMap_Village();
 
 	bool PopulateDynamics(vector<cDynamic*> &vecDyns) override;
+	virtual bool DrawStaticMap(olc::PixelGameEngine *gfx) override;
 };
+
