@@ -4,8 +4,6 @@
 #include "consts/consts.h"
 
 class Engine;
-// class cItem;
-// class cWeapon;
 
 using namespace std;
 

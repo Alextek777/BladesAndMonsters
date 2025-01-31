@@ -54,7 +54,7 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         dynamic->Update(fElapsedTime, m_pPlayer);
 	    dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
     }
-    
+
     SetPixelMode(olc::Pixel::NORMAL);
 
     return true;

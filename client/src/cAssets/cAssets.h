@@ -9,7 +9,6 @@
 class cMap;
 class cAnimationHandler;
 
-
 class Assets
 {
 public:

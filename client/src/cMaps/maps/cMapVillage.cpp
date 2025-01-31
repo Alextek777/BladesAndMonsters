@@ -37,6 +37,7 @@ bool cMap_Village::PopulateDynamics(vector<cDynamic*> &vecDyns) {
 bool cMap_Village::DrawStaticMap(float ox, float oy) {
 	gfx->SetDrawTarget(backgroundLayer);
 
+    // TODO: move this func to utils
     auto ToScreen = [&](int x, int y)
     {			
         return olc::vi2d
@@ -48,7 +49,8 @@ bool cMap_Village::DrawStaticMap(float ox, float oy) {
 
 	gfx->Clear(olc::WHITE);
 	gfx->SetPixelMode(olc::Pixel::MASK);
-    
+
+    // TODO: refactor this crap, move drawing in parent class and change type switching on load Assets::GetSprite() function 
     // (0,0) is at top, defined by vOrigin, so draw from top to bottom
     // to ensure tiles closest to camera are drawn last
     for (int y = 0; y < nHeight; y++)
@@ -113,6 +115,12 @@ bool cMap_Village::DrawStaticMap(float ox, float oy) {
 
             vWorld.x -= ox;
             vWorld.y -= oy;
+
+            // TODO: refactor -> draw only visible tiles
+            if (vWorld.y > gfx->ScreenHeight() || vWorld.x > gfx->ScreenWidth()) {
+                break;
+            }
+
             gfx->DrawPartialSprite(vWorld, Assets::get().GetSprite(sName), source_pos, source_size);
         }
     }
