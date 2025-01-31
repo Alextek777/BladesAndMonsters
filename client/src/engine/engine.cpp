@@ -17,7 +17,6 @@ bool Engine::OnUserCreate()
     Assets::get().LoadAnimations();
 
     m_pPlayer = new cDynamic_Creature_Witty();
-    m_vecDynamics.push_back(m_pPlayer);
 
 	ChangeMap("village", 200, 200);
     UpdateStaticMap(0);
@@ -49,7 +48,6 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
     });
 
     SetPixelMode(olc::Pixel::ALPHA);
-
     for (auto dynamic : m_vecDynamics) {
         dynamic->Update(fElapsedTime, m_pPlayer);
 	    dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
@@ -62,18 +60,14 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 
 void Engine::ChangeMap(string sMapName, float x, float y)
 {
-	// Destroy all dynamics
-	// m_vecDynamics.clear();
-	// m_vecDynamics.push_back(m_pPlayer);
+	m_vecDynamics.clear();
 
-	// Set current map
-	m_pCurrentMap = Assets::get().GetMap(sMapName);
-
-	// Update player location
-	m_pPlayer->px = x;
+	m_vecDynamics.push_back(m_pPlayer);
+    m_pPlayer->px = x;
 	m_pPlayer->py = y;
 
-	// Create new dynamics from map
+	m_pCurrentMap = Assets::get().GetMap(sMapName);
+
 	m_pCurrentMap->PopulateDynamics(m_vecDynamics);
 
 	// // Create new dynamics from quests
