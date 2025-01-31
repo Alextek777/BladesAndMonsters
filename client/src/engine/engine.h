@@ -8,7 +8,7 @@
 
 #include <olcPixelGameEngine.h>
 #include "cMaps/cMap.h"
-#include "cDynamics/cDynamics.h"
+#include "cDynamics/creatures/witty.h"
 
 
 using namespace std;

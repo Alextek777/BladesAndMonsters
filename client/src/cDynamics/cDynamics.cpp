@@ -4,11 +4,11 @@
 
 Engine* cDynamic::g_engine = nullptr;
 
-cDynamic::cDynamic(string n)
+cDynamic::cDynamic(string n, float ox, float oy)
 {
 	sName = n;
-	px = 0.0f;
-	py = 0.0f;
+	px = ox;
+	py = oy;
 	vx = 0.0f;
 	vy = 0.0f;
 	bSolidVsMap = true;
@@ -28,7 +28,7 @@ cDynamic::~cDynamic()
 /////////////////////////////////////////////////////////////////////
 
 
-cDynamic_Creature::cDynamic_Creature(string name) : cDynamic(name)
+cDynamic_Creature::cDynamic_Creature(string name) : cDynamic(name, 0, 0)
 {
 	nHealth = 10;
 	nHealthMax = 10;
@@ -128,34 +128,9 @@ void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-cDynamic_Creature_Witty::cDynamic_Creature_Witty() : cDynamic_Creature("witty")
-{
-	bFriendly = true;
-	nHealth = 9;
-	nHealthMax = 10;
-	m_fStateTick = 2.0f;
-	// pEquipedWeapon = (cWeapon*)Assets::get().GetItem("Basic Sword");
-}
-
-void cDynamic_Creature_Witty::PerformAttack()
-{
-	m_nGraphicState = ATTACKING;
-	m_nGraphicCounter = 1;
-	// if (pEquipedWeapon == nullptr)
-	// 	return;
-
-	// pEquipedWeapon->OnUse(this);
-}
-
-
-/////////////////////////////////////////////////////////////////////////////
-
-
-cDynamic_Object::cDynamic_Object(string name, float px, float py) : cDynamic(name) {
+cDynamic_Object::cDynamic_Object(string name, float px, float py) : cDynamic(name, px, py) {
 	m_nGraphicCounter = rand() % 5;
 	bIsAttackable = false;
-	this->px = px;
-	this->py = py;
 }
 
 void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {

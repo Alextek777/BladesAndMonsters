@@ -1,5 +1,5 @@
 #include "cMapVillage.h"
-
+#include "cDynamics/creatures/orc.h"
 
 cMap_Village::cMap_Village(olc::PixelGameEngine* gfx) : cMap(gfx)
 {
@@ -14,6 +14,9 @@ bool cMap_Village::PopulateDynamics(vector<cDynamic*> &vecDyns) {
 	vecDyns.push_back(new cDynamic_Object("TreeAutumn", 200, 240));
 	vecDyns.push_back(new cDynamic_Object("TreeAutumn", 280, 240));
     vecDyns.push_back(new cDynamic_Object("TreeAutumn", 100, 100));
+
+
+    vecDyns.push_back(new cDynamic_Creature_Orc("orc", 300, 300));
 
 
 	// // Add Items

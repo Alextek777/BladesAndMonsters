@@ -12,7 +12,7 @@ using namespace std;
 class cDynamic
 {
 public:
-	cDynamic(string n);
+	cDynamic(string n, float ox, float oy);
 	~cDynamic();
 
 public:
@@ -70,16 +70,6 @@ protected:
 	float m_fKnockBackDX = 0.0f;
 	float m_fKnockBackDY = 0.0f;
 
-};
-
-
-class cDynamic_Creature_Witty : public cDynamic_Creature
-{
-public:
-	cDynamic_Creature_Witty();
-
-public:
-	void PerformAttack() override;
 };
 
 

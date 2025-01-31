@@ -20,6 +20,7 @@ bool Engine::OnUserCreate()
     m_vecDynamics.push_back(m_pPlayer);
 
 	ChangeMap("village", 200, 200);
+    UpdateStaticMap(0);
     
     return true;
 }
@@ -53,7 +54,7 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         dynamic->Update(fElapsedTime, m_pPlayer);
 	    dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
     }
-
+    
     SetPixelMode(olc::Pixel::NORMAL);
 
     return true;
