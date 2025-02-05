@@ -2,6 +2,7 @@
 #include "engine/engine.h"
 
 
+extern e_GameMode GAMEMODE; 
 Engine* cDynamic::g_engine = nullptr;
 
 cDynamic::cDynamic(string n, float ox, float oy)
@@ -11,6 +12,7 @@ cDynamic::cDynamic(string n, float ox, float oy)
 	py = oy;
 	vx = 0.0f;
 	vy = 0.0f;
+	size = olc::vi2d(10,10);
 	bSolidVsMap = true;
 	bSolidVsDyn = true;
 	bFriendly = true;
@@ -37,6 +39,7 @@ cDynamic_Creature::cDynamic_Creature(string name) : cDynamic(name, 0, 0)
 	m_nGraphicCounter = 0;
 	m_fTimer = 0.0f;
 	bIsAttackable = true;
+	size = olc::vi2d(100, 100);
 }
 
 void cDynamic_Creature::Update(float fElapsedTime, cDynamic* player)
@@ -118,6 +121,10 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 	olc::vf2d source_Pos(frame->ox, frame->oy);
 	olc::vf2d source_Size(frame->frameSize, frame->frameSize);
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
+
+	if (GAMEMODE == DEBUG) {
+		gfx->DrawRect(pos, size, olc::WHITE);
+	} 
 }
 
 void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
@@ -131,6 +138,8 @@ void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
 cDynamic_Object::cDynamic_Object(string name, float px, float py) : cDynamic(name, px, py) {
 	m_nGraphicCounter = rand() % 5;
 	bIsAttackable = false;
+
+	size = olc::vi2d(64,64);
 }
 
 void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
@@ -149,6 +158,10 @@ void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
 	olc::vf2d source_Pos(frame->ox, frame->oy);
 	olc::vf2d source_Size(frame->frameSize, frame->frameSize);
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
+
+	if (GAMEMODE == DEBUG) {
+		gfx->DrawRect(pos, size, olc::WHITE);
+	} 
 }
 
 void cDynamic_Object::Update(float fElapsedTime, cDynamic* player) {

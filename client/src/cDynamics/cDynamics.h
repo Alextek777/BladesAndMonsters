@@ -16,6 +16,8 @@ public:
 public:
 	float px, py;
 	float vx, vy;
+	olc::vi2d size;
+
 	bool bSolidVsMap;
 	bool bSolidVsDyn;
 	bool bFriendly;

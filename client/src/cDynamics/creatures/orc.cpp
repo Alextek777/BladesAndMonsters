@@ -9,6 +9,8 @@ cDynamic_Creature_Orc::cDynamic_Creature_Orc(string name, float px, float py) : 
 	m_fStateTick = 2.0f;
 	this->px = px;
 	this->py = py;
+
+	size = olc::vi2d(100,100);
 	// pEquipedWeapon = (cWeapon*)Assets::get().GetItem("Basic Sword");
 }
 

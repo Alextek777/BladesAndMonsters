@@ -1,56 +1,53 @@
 
 #include "engine.h"
 
-#define X(n) m_script.AddCommand(new cCommand_ ## n)
+#define X(n) m_script.AddCommand(new cCommand_##n)
 
 Engine::Engine()
 {
-	sAppName = "Top Down Role Playing Game";
+    sAppName = "Top Down Role Playing Game";
 }
-
-
 
 bool Engine::OnUserCreate()
 {
-	Assets::get().LoadSprites();
-	Assets::get().LoadMaps(this);
+    Assets::get().LoadSprites();
+    Assets::get().LoadMaps(this);
     Assets::get().LoadAnimations();
 
     m_pPlayer = new cDynamic_Creature_Witty();
 
-	ChangeMap("village", 200, 200);
+    ChangeMap("village", 150, 100);
     UpdateStaticMap(0);
-    
+
     return true;
 }
 
 bool Engine::OnUserUpdate(float fElapsedTime)
 {
-	switch (m_nGameMode)
-	{
-	case MODE_LOCAL_MAP:
-		return UpdateLocalMap(fElapsedTime);
-	}
+    switch (m_nGameMode)
+    {
+    case MODE_LOCAL_MAP:
+        return UpdateLocalMap(fElapsedTime);
+    }
 
     return true;
 }
 
 bool Engine::UpdateLocalMap(float fElapsedTime)
-{   
+{
     Clear(olc::BLANK);
 
     UpdateStaticMap(fElapsedTime);
     HandleUserInput(fElapsedTime);
-    
-    
-    std::sort(m_vecDynamics.begin(), m_vecDynamics.end(), [](const cDynamic* a, const cDynamic* b) {
-        return a->py < b->py;
-    });
+
+    std::sort(m_vecDynamics.begin(), m_vecDynamics.end(), [](const cDynamic *a, const cDynamic *b)
+              { return a->py < b->py; });
 
     SetPixelMode(olc::Pixel::ALPHA);
-    for (auto dynamic : m_vecDynamics) {
+    for (auto dynamic : m_vecDynamics)
+    {
         dynamic->Update(fElapsedTime, m_pPlayer);
-	    dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
+        dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
     }
 
     SetPixelMode(olc::Pixel::NORMAL);
@@ -60,57 +57,63 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 
 void Engine::ChangeMap(string sMapName, float x, float y)
 {
-	m_vecDynamics.clear();
+    m_vecDynamics.clear();
 
-	m_vecDynamics.push_back(m_pPlayer);
+    m_vecDynamics.push_back(m_pPlayer);
     m_pPlayer->px = x;
-	m_pPlayer->py = y;
+    m_pPlayer->py = y;
 
-	m_pCurrentMap = Assets::get().GetMap(sMapName);
+    m_pCurrentMap = Assets::get().GetMap(sMapName);
 
-	m_pCurrentMap->PopulateDynamics(m_vecDynamics);
+    m_pCurrentMap->PopulateDynamics(m_vecDynamics);
 
-	// // Create new dynamics from quests
-	// for (auto q : m_listQuests)
-	// 	q->PopulateDynamics(m_vecDynamics, m_pCurrentMap->sName);
+    // // Create new dynamics from quests
+    // for (auto q : m_listQuests)
+    // 	q->PopulateDynamics(m_vecDynamics, m_pCurrentMap->sName);
 }
 
-
-void Engine::UpdateStaticMap(float fElapsedTime) {
+void Engine::UpdateStaticMap(float fElapsedTime)
+{
     olc::vi2d mouse = GetMousePos();
     bool updateMap = false;
 
-    if (mouse.x < 10 ) {
+    if (mouse.x < 10)
+    {
         fCameraPosX -= 100 * fElapsedTime;
         updateMap = true;
     }
-    
-    if ( mouse.x > ScreenWidth() - 10) {
+
+    if (mouse.x > ScreenWidth() - 10)
+    {
         fCameraPosX += 100 * fElapsedTime;
         updateMap = true;
     }
-    
-    if (mouse.y < 10 ) {
+
+    if (mouse.y < 10)
+    {
         fCameraPosY -= 100 * fElapsedTime;
         updateMap = true;
     }
-    
-    if (mouse.y > ScreenHeight() - 10 ) {
+
+    if (mouse.y > ScreenHeight() - 10)
+    {
         fCameraPosY += 100 * fElapsedTime;
         updateMap = true;
     }
 
-    if (updateMap) {
+    if (updateMap)
+    {
         m_pCurrentMap->DrawStaticMap(fCameraPosX, fCameraPosY);
     }
 }
 
-void Engine::HandleUserInput(float fElapsedTime) {
+void Engine::HandleUserInput(float fElapsedTime)
+{
     m_pPlayer->vx = 0;
     m_pPlayer->vy = 0;
 
-    // Walk 
-    if (GetKey(olc::UP).bHeld) 
+    // Walk
+    if (GetKey(olc::UP).bHeld)
         m_pPlayer->vy = -40.0f;
 
     if (GetKey(olc::DOWN).bHeld)
@@ -122,9 +125,7 @@ void Engine::HandleUserInput(float fElapsedTime) {
     if (GetKey(olc::RIGHT).bHeld)
         m_pPlayer->vx = 40.0f;
 
-
     // Atack
-    if (GetKey(olc::SPACE).bPressed) 
+    if (GetKey(olc::SPACE).bPressed)
         m_pPlayer->PerformAttack();
-
 }
