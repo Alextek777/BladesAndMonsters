@@ -113,16 +113,16 @@ void Engine::HandleUserInput(float fElapsedTime)
 
     // Walk
     if (GetKey(olc::UP).bHeld)
-        m_pPlayer->vy = -40.0f;
+        m_pPlayer->vy = -30.0f;
 
     if (GetKey(olc::DOWN).bHeld)
-        m_pPlayer->vy = 40.0f;
+        m_pPlayer->vy = 30.0f;
 
     if (GetKey(olc::LEFT).bHeld)
-        m_pPlayer->vx = -40.0f;
+        m_pPlayer->vx = -30.0f;
 
     if (GetKey(olc::RIGHT).bHeld)
-        m_pPlayer->vx = 40.0f;
+        m_pPlayer->vx = 30.0f;
 
     // Atack
     if (GetKey(olc::SPACE).bPressed)

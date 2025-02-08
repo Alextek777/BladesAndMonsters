@@ -10,13 +10,12 @@ using namespace std;
 class cDynamic
 {
 public:
-	cDynamic(string n, float ox, float oy);
+	cDynamic(string name, float ox, float oy);
 	~cDynamic();
 
 public:
 	float px, py;
 	float vx, vy;
-	olc::vi2d size;
 
 	bool bSolidVsMap;
 	bool bSolidVsDyn;
@@ -28,6 +27,7 @@ public:
 
 protected:
 	int m_nGraphicCounter;
+	float m_fTimerLimit;
 	float m_fTimer;
 
 public:

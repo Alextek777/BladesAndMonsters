@@ -44,6 +44,10 @@ public:
 		return m_animationHandler.getAnimationFrame(name, e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, counter);
 	}
 
+	uint16_t GetFrameCount(string &name, e_GraphicsState state = e_GraphicsState::DEFAULT_GS, e_FactionDirection direction = e_FactionDirection::DEFAULT_FD) {
+		return m_animationHandler.getFrameCount(name, state, direction);
+	}
+
 	void LoadAnimations();
 	void LoadSprites();
     void LoadMaps(olc::PixelGameEngine* gfx);

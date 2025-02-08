@@ -53,7 +53,7 @@ void Assets::LoadAnimations() {
 
 	// Clouds
 	// m_animationHandler.load("cloud", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/clouds/default.png", 4, 40);
-	m_animationHandler.load("cloud", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/clouds/SunnyDayCloud/default.png", 9, 40, 120);
+	m_animationHandler.load("cloud", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/clouds/SunnyDayCloud/default.png", 8, 40, 120);
 }
 
 void Assets::LoadSprites()

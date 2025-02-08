@@ -13,6 +13,10 @@ AnimationFrame* cAnimationHandler::getAnimationFrame(string &name, e_GraphicsSta
     return animations.at(name).at(state).at(direction).getFrame(counter);
 }
 
+uint16_t cAnimationHandler::getFrameCount(string &name, e_GraphicsState state, e_FactionDirection direction) {
+    return animations.at(name).at(state).at(direction).getFrameCount();
+}
+
 // -------------------------------------------------------------------------------------------------------------------------------------------------
 
 Animation::Animation(uint16_t frameCount, uint16_t frameWidth, uint16_t frameHeight, olc::Sprite *sprite) {
@@ -34,6 +38,12 @@ Animation::Animation(uint16_t frameCount, uint16_t frameWidth, uint16_t frameHei
     }
 }
 
+uint16_t Animation::getFrameCount() {
+    return frameCount;
+}
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------
+
 AnimationFrame* Animation::getFrame(uint16_t counter) {
     if (frameVec == nullptr || frameCount == 0 || &frameVec[counter % frameCount] == nullptr) {
         throw std::out_of_range("Invalid frame access.");
@@ -41,9 +51,6 @@ AnimationFrame* Animation::getFrame(uint16_t counter) {
 
     return &frameVec[counter % frameCount];
 }
-
-// -------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 AnimationFrame::AnimationFrame(olc::Sprite* sprite, uint16_t ox, uint16_t oy, uint16_t width, uint16_t height) {
     this->decal = new olc::Decal(sprite);

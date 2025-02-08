@@ -5,20 +5,24 @@
 extern e_GameMode GAMEMODE; 
 Engine* cDynamic::g_engine = nullptr;
 
-cDynamic::cDynamic(string n, float ox, float oy)
+cDynamic::cDynamic(string name, float ox, float oy)
 {
-	sName = n;
+	sName = name;
 	px = ox;
 	py = oy;
 	vx = 0.0f;
 	vy = 0.0f;
-	size = olc::vi2d(10,10);
+
 	bSolidVsMap = true;
 	bSolidVsDyn = true;
 	bFriendly = true;
 	bRedundant = false;
 	bIsAttackable = false;
 	bIsProjectile = false;
+
+	m_nGraphicCounter = 0;
+	m_fTimer = 0.0f;
+	m_fTimerLimit = 0.2f;
 }
 
 cDynamic::~cDynamic()
@@ -36,10 +40,7 @@ cDynamic_Creature::cDynamic_Creature(string name) : cDynamic(name, 0, 0)
 	nHealthMax = 10;
 	m_nFacingDirection = SOUTH;
 	m_nGraphicState = STANDING;
-	m_nGraphicCounter = 0;
-	m_fTimer = 0.0f;
 	bIsAttackable = true;
-	size = olc::vi2d(100, 100);
 }
 
 void cDynamic_Creature::Update(float fElapsedTime, cDynamic* player)
@@ -62,7 +63,7 @@ void cDynamic_Creature::Update(float fElapsedTime, cDynamic* player)
 	{
 		bSolidVsDyn = true;
 		m_fTimer += fElapsedTime;
-		if (m_fTimer >= 0.1f)
+		if (m_fTimer >= m_fTimerLimit)
 		{
 			m_fTimer = 0;
 			m_nGraphicCounter = (m_nGraphicCounter + 1) % 16;
@@ -123,7 +124,7 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
-		gfx->DrawRect(pos, size, olc::WHITE);
+		gfx->DrawRect(pos, source_Size, olc::WHITE);
 	} 
 }
 
@@ -135,12 +136,7 @@ void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-cDynamic_Object::cDynamic_Object(string name, float px, float py) : cDynamic(name, px, py) {
-	m_nGraphicCounter = rand() % 5;
-	bIsAttackable = false;
-
-	size = olc::vi2d(64,64);
-}
+cDynamic_Object::cDynamic_Object(string name, float px, float py) : cDynamic(name, px, py) {}
 
 void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
 	AnimationFrame* frame;
@@ -160,15 +156,29 @@ void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
-		gfx->DrawRect(pos, size, olc::WHITE);
+		gfx->DrawRect(pos, source_Size, olc::WHITE);
 	} 
 }
 
 void cDynamic_Object::Update(float fElapsedTime, cDynamic* player) {
 	m_fTimer += fElapsedTime;
-	if (m_fTimer >= 0.12f)
+	if (m_fTimer >= m_fTimerLimit)
 	{
+		uint16_t frameCount = 0;
+		try
+		{
+			frameCount = Assets::get().GetFrameCount(sName);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "can not get frame count for object: " << sName << " error: " << e.what() << '\n';
+			return;
+		}
+
 		m_fTimer = 0;
-		m_nGraphicCounter = (m_nGraphicCounter + 1) % 16;
+		m_nGraphicCounter = (m_nGraphicCounter + 1) % frameCount;
 	}
+
+	px += vx * fElapsedTime;
+	py += vy * fElapsedTime;
 }
