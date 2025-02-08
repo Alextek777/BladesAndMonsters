@@ -43,14 +43,13 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
     std::sort(m_vecDynamics.begin(), m_vecDynamics.end(), [](const cDynamic *a, const cDynamic *b)
               { return a->py < b->py; });
 
-    SetPixelMode(olc::Pixel::ALPHA);
+    //SetPixelMode(olc::Pixel::ALPHA);
     for (auto dynamic : m_vecDynamics)
     {
         dynamic->Update(fElapsedTime, m_pPlayer);
         dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
     }
-
-    SetPixelMode(olc::Pixel::NORMAL);
+    //SetPixelMode(olc::Pixel::NORMAL);
 
     return true;
 }

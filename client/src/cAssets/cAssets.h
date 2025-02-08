@@ -21,14 +21,14 @@ public:
 	Assets(Assets const&) = delete;
 	void operator=(Assets const&) = delete;
 
-	olc::Sprite* GetSprite(std::string name)
+	olc::Decal* GetDecal(int idx)
 	{
-		return m_mapSprites[name];
+		return m_mapDecal[idx];
 	}
 
-	olc::Decal* GetDecal(std::string name)
+	olc::Sprite* GetSprite(int idx)
 	{
-		return m_mapDecal[name];
+		return m_mapSprite[idx];
 	}
 
 	cMap* GetMap(std::string name)
@@ -51,8 +51,8 @@ private:
 	Assets();
 	~Assets();	
 
-	std::map<std::string, olc::Sprite*> m_mapSprites;
-	std::map<std::string, olc::Decal*> m_mapDecal;
+	std::map<int, olc::Decal*> m_mapDecal;
+	std::map<int, olc::Sprite*> m_mapSprite;
 
 	std::map<std::string, cMap*> m_mapMaps;
 	cAnimationHandler m_animationHandler;

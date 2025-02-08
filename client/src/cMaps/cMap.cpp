@@ -8,7 +8,6 @@ cMap::cMap()
 }
 
 cMap::cMap(olc::PixelGameEngine *gfx) {
-	pSprite = nullptr;
 	nWidth = 0;
 	nHeight = 0;
 	m_solids = nullptr;
@@ -40,10 +39,9 @@ bool cMap::GetSolid(int x, int y)
 		return true;
 }
 
-bool cMap::Create(string fileData, olc::Sprite* sprite, string name)
+bool cMap::Create(string fileData, string name)
 {
 	sName = name;
-	pSprite = sprite;
 	ifstream data(fileData, ios::in | ios::binary);
 	if (data.is_open())
 	{
@@ -60,4 +58,52 @@ bool cMap::Create(string fileData, olc::Sprite* sprite, string name)
 	}
 
 	return false;
+}
+
+bool cMap::DrawStaticMap(float ox, float oy) {
+	gfx->SetDrawTarget(backgroundLayer);
+
+    auto ToScreen = [&](int x, int y)
+    {			
+        return olc::vi2d
+        {
+            (vOrigin.x * vTileSize.x) + (x - y) * (vTileSize.x / 2),
+            (vOrigin.y * vTileSize.y) + (x + y) * (vTileSize.y / 2)
+        };
+    };
+
+    gfx->Clear(olc::WHITE);
+    gfx->SetPixelMode(olc::Pixel::MASK);
+    for (int y = 0; y < nHeight; y++)
+    {
+        for (int x = 0; x < nWidth; x++)
+        {
+            olc::vi2d vWorld = ToScreen(x, y);
+
+
+            // // TODO: refactor -> draw only visible tiles
+            // if (vWorld.y > gfx->ScreenHeight() || vWorld.x > gfx->ScreenWidth()) {
+            //     break;
+            // }
+
+            olc::Sprite* sprite = Assets::get().GetSprite(GetIndex(x, y));
+            if (sprite == nullptr) {
+                std::cerr << "unknown sprite index: " << GetIndex(x, y) << "\n";
+                continue;
+            }
+
+            vWorld.y = vWorld.y - sprite->height + vTileSize.y;
+    
+            vWorld.x -= ox;
+            vWorld.y -= oy;
+
+            gfx->DrawSprite(vWorld, sprite);
+        }
+    }
+
+    gfx->SetPixelMode(olc::Pixel::NORMAL);
+	gfx->EnableLayer(backgroundLayer, true);
+	gfx->SetDrawTarget(nullptr);
+
+	return true;
 }

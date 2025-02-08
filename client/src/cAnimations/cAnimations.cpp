@@ -1,8 +1,10 @@
 #include "cAnimations.h"
 
 
-void cAnimationHandler::load(string name, e_GraphicsState state, e_FactionDirection direction, uint16_t frameCount, uint16_t frameSize, string path) {
-    animations[name][state][direction] = Animation(frameCount, frameSize, new olc::Sprite(path));
+void cAnimationHandler::load(string name, e_GraphicsState state, e_FactionDirection direction, string path, uint16_t frameCount, uint16_t frameWidth, uint16_t frameHight) {
+    frameHight = frameWidth == -1 ? frameWidth : frameHight;
+
+    animations[name][state][direction] = Animation(frameCount, frameWidth, frameHight, new olc::Sprite(path));
 }
 
 

@@ -20,7 +20,6 @@ public:
 	int nWidth;
 	int nHeight;
 	string sName;
-	olc::Sprite* pSprite;
 
 	// Size of single tile graphic
 	olc::vi2d vTileSize;
@@ -29,7 +28,7 @@ public:
 
 	int GetIndex(int x, int y);
 	bool GetSolid(int x, int y);
-	bool Create(string fileData, olc::Sprite* sprite, string name);
+	bool Create(string fileData, string name);
 
 
 
@@ -37,9 +36,7 @@ public:
 		return false;
 	}
 
-	virtual bool DrawStaticMap(float ox, float oy) {
-		return false;
-	}
+	virtual bool DrawStaticMap(float ox, float oy);
 
 protected:
 	int *m_indices = nullptr;

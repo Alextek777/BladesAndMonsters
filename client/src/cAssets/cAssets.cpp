@@ -1,6 +1,8 @@
 
 #include "cAssets.h"
 #include "cMaps/maps/cMapVillage.h"
+#include <boost/filesystem.hpp>
+#include <iostream>
 
 Assets::Assets()
 {
@@ -12,51 +14,85 @@ Assets::~Assets()
 }
 
 void Assets::LoadAnimations() {
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::EAST, 8, 100, "animations/creatures/witty/walking/east.png");
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::WEST, 8, 100, "animations/creatures/witty/walking/west.png");
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::NORTH, 8, 100, "animations/creatures/witty/walking/east.png");
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, 8, 100, "animations/creatures/witty/walking/west.png");
+	// Characters
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::EAST, "animations/creatures/witty/walking/east.png", 8, 100);
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::WEST, "animations/creatures/witty/walking/west.png", 8, 100);
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::NORTH, "animations/creatures/witty/walking/east.png", 8, 100);
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, "animations/creatures/witty/walking/west.png", 8, 100);
 
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::EAST, 6, 100, "animations/creatures/witty/standing/east.png");
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::WEST, 6, 100, "animations/creatures/witty/standing/west.png");
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::NORTH, 6, 100, "animations/creatures/witty/standing/east.png");
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, 6, 100, "animations/creatures/witty/standing/west.png");
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::EAST, "animations/creatures/witty/standing/east.png", 6, 100);
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::WEST, "animations/creatures/witty/standing/west.png", 6, 100);
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::NORTH, "animations/creatures/witty/standing/east.png", 6, 100);
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, "animations/creatures/witty/standing/west.png", 6, 100);
 
-	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::EAST, 6, 100, "animations/creatures/witty/attacking/east.png");
-	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::WEST, 6, 100, "animations/creatures/witty/attacking/west.png");
-	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::NORTH, 6, 100, "animations/creatures/witty/attacking/east.png");
-	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::SOUTH, 6, 100, "animations/creatures/witty/attacking/west.png");
-
-
-	m_animationHandler.load("orc", e_GraphicsState::WALKING, e_FactionDirection::EAST, 8, 100, "animations/creatures/orc/walking/east.png");
-	m_animationHandler.load("orc", e_GraphicsState::WALKING, e_FactionDirection::WEST, 8, 100, "animations/creatures/orc/walking/west.png");
-	m_animationHandler.load("orc", e_GraphicsState::WALKING, e_FactionDirection::NORTH, 8, 100, "animations/creatures/orc/walking/east.png");
-	m_animationHandler.load("orc", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, 8, 100, "animations/creatures/orc/walking/west.png");
-
-	m_animationHandler.load("orc", e_GraphicsState::STANDING, e_FactionDirection::EAST, 6, 100, "animations/creatures/orc/standing/east.png");
-	m_animationHandler.load("orc", e_GraphicsState::STANDING, e_FactionDirection::WEST, 6, 100, "animations/creatures/orc/standing/west.png");
-	m_animationHandler.load("orc", e_GraphicsState::STANDING, e_FactionDirection::NORTH, 6, 100, "animations/creatures/orc/standing/east.png");
-	m_animationHandler.load("orc", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, 6, 100, "animations/creatures/orc/standing/west.png");
-
-	m_animationHandler.load("orc", e_GraphicsState::ATTACKING, e_FactionDirection::EAST, 6, 100, "animations/creatures/orc/attacking/east.png");
-	m_animationHandler.load("orc", e_GraphicsState::ATTACKING, e_FactionDirection::WEST, 6, 100, "animations/creatures/orc/attacking/west.png");
-	m_animationHandler.load("orc", e_GraphicsState::ATTACKING, e_FactionDirection::NORTH, 6, 100, "animations/creatures/orc/attacking/east.png");
-	m_animationHandler.load("orc", e_GraphicsState::ATTACKING, e_FactionDirection::SOUTH, 6, 100, "animations/creatures/orc/attacking/west.png");
+	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::EAST, "animations/creatures/witty/attacking/east.png", 6, 100);
+	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::WEST, "animations/creatures/witty/attacking/west.png", 6, 100);
+	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::NORTH, "animations/creatures/witty/attacking/east.png", 6, 100);
+	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::SOUTH, "animations/creatures/witty/attacking/west.png", 6, 100);
 
 
-	m_animationHandler.load("TreeAutumn", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, 16, 64, "animations/trees/autumn/default.png");
+	m_animationHandler.load("orc", e_GraphicsState::WALKING, e_FactionDirection::EAST, "animations/creatures/orc/walking/east.png", 8, 100);
+	m_animationHandler.load("orc", e_GraphicsState::WALKING, e_FactionDirection::WEST, "animations/creatures/orc/walking/west.png", 8, 100);
+	m_animationHandler.load("orc", e_GraphicsState::WALKING, e_FactionDirection::NORTH, "animations/creatures/orc/walking/east.png", 8, 100);
+	m_animationHandler.load("orc", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, "animations/creatures/orc/walking/west.png", 8, 100);
+
+	m_animationHandler.load("orc", e_GraphicsState::STANDING, e_FactionDirection::EAST, "animations/creatures/orc/standing/east.png", 6, 100);
+	m_animationHandler.load("orc", e_GraphicsState::STANDING, e_FactionDirection::WEST, "animations/creatures/orc/standing/west.png", 6, 100);
+	m_animationHandler.load("orc", e_GraphicsState::STANDING, e_FactionDirection::NORTH, "animations/creatures/orc/standing/east.png", 6, 100);
+	m_animationHandler.load("orc", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, "animations/creatures/orc/standing/west.png", 6, 100);
+
+	m_animationHandler.load("orc", e_GraphicsState::ATTACKING, e_FactionDirection::EAST, "animations/creatures/orc/attacking/east.png", 6, 100);
+	m_animationHandler.load("orc", e_GraphicsState::ATTACKING, e_FactionDirection::WEST, "animations/creatures/orc/attacking/west.png", 6, 100);
+	m_animationHandler.load("orc", e_GraphicsState::ATTACKING, e_FactionDirection::NORTH, "animations/creatures/orc/attacking/east.png", 6, 100);
+	m_animationHandler.load("orc", e_GraphicsState::ATTACKING, e_FactionDirection::SOUTH, "animations/creatures/orc/attacking/west.png", 6, 100);
+
+
+	// Trees
+	m_animationHandler.load("TreeAutumn", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/trees/autumn/default.png", 16, 64, 64);
+
+
+	// Clouds
+	// m_animationHandler.load("cloud", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/clouds/default.png", 4, 40);
+	m_animationHandler.load("cloud", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/clouds/SunnyDayCloud/default.png", 9, 40, 120);
 }
 
 void Assets::LoadSprites()
 {
-	auto load = [&](std::string sName, std::string sFileName)
-	{
-		olc::Sprite* s = new olc::Sprite(sFileName);
-		m_mapSprites[sName] = s;
-		m_mapDecal[sName] = new olc::Decal(s);
-	};
+	string spriteDirPath = "sprites";
+    boost::filesystem::path dirPath(spriteDirPath);
 
-	load("village", "sprites/isometric_demo.png");
+    if (!boost::filesystem::exists(dirPath) || !boost::filesystem::is_directory(dirPath)) {
+        std::cerr << "Directory does not exist or is not a directory!\n";
+        return;
+    }
+
+    for (const auto& entry : boost::filesystem::directory_iterator(dirPath)) {
+
+		if (!boost::filesystem::is_regular_file(entry.path())) continue;
+
+		string spriteIndex = entry.path().stem().string();
+		int idx;
+		try {
+			size_t pos;
+			idx = std::stoi(spriteIndex, &pos);
+			if (spriteIndex.size() != pos) {
+				std::cerr << "sprite name is not an index: " << spriteIndex << "\n";
+				continue;
+			}
+
+			if (m_mapDecal.find(idx) != m_mapDecal.end()) {
+				std::cerr << "Sprite with index [" << idx << "] already loaded\n";
+				continue;
+			}
+
+			olc::Sprite *s = new olc::Sprite(spriteDirPath + "/" + entry.path().filename().string());
+			m_mapSprite[idx] = s;
+			m_mapDecal[idx] = new olc::Decal(s);	
+		} catch(...) {
+			std::cerr << "sprite name is not an index: " << spriteIndex << "\n";
+			continue;
+		}
+    }
 }
 
 void Assets::LoadMaps(olc::PixelGameEngine* gfx)

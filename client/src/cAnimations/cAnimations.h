@@ -15,7 +15,7 @@ struct AnimationFrame;
 class cAnimationHandler {
     map<string, map<e_GraphicsState, map<e_FactionDirection, Animation>>> animations;
 public:
-    void load(string name, e_GraphicsState state, e_FactionDirection direction, uint16_t frameCount, uint16_t frameSize, string path);
+    void load(string name, e_GraphicsState state, e_FactionDirection direction, string path, uint16_t frameCount, uint16_t frameWidth, uint16_t frameHight = -1);
 
     AnimationFrame* getAnimationFrame(string &name, e_GraphicsState state, e_FactionDirection direction, uint16_t counter);
 };
@@ -24,15 +24,18 @@ public:
 struct AnimationFrame {
     olc::Decal* decal;
     uint16_t ox, oy;
-    uint16_t frameSize;
+    uint16_t width;
+    uint16_t height;
+
 
     AnimationFrame(){}
 
-    AnimationFrame(olc::Sprite* sprite, uint16_t ox, uint16_t oy, uint16_t frameSize) {
+    AnimationFrame(olc::Sprite* sprite, uint16_t ox, uint16_t oy, uint16_t width, uint16_t height) {
         this->decal = new olc::Decal(sprite);
         this->ox = ox;
-        this->oy = oy; // todo: might be unnececarry, all animations should start from upper corner
-        this->frameSize = frameSize;
+        this->oy = oy; // TODO: might be unnececarry, all animations should start from upper corner
+        this->width = width;
+        this->height = height;
     }
 };
 
@@ -40,24 +43,27 @@ struct AnimationFrame {
 struct Animation {
     olc::Sprite *sprite;
     uint16_t frameCount;
-    uint16_t frameSize;
+    uint16_t frameWidth;
+    uint16_t frameHeight;
     AnimationFrame* frameVec;
     Animation(){}
 
-    Animation(uint16_t frameCount, uint16_t frameSize, olc::Sprite *sprite) {
+    Animation(uint16_t frameCount, uint16_t frameWidth, uint16_t frameHeight, olc::Sprite *sprite) {
         frameVec = new AnimationFrame[frameCount];
 
 
         this->sprite = sprite;
         this->frameCount = frameCount;
-        this->frameSize = frameSize;
+        this->frameWidth = frameWidth;
+        this->frameHeight = frameHeight;
 
         olc::Decal* decal = new olc::Decal(sprite);
         for (int i = 0; i < frameCount; i++) {
             frameVec[i].decal = decal;
-            frameVec[i].ox = i * frameSize;
+            frameVec[i].ox = i * frameWidth;
             frameVec[i].oy = 0;
-            frameVec[i].frameSize = frameSize;
+            frameVec[i].width = frameWidth;
+            frameVec[i].height = frameHeight;
         }
     }
 

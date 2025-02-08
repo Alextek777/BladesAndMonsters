@@ -23,7 +23,7 @@ include_directories(${CMAKE_SOURCE_DIR}/libs/src)
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
-target_link_libraries(${PROJECT_NAME} -lpng -lGL -lX11)
+target_link_libraries(${PROJECT_NAME} -lpng -lGL -lX11 -lboost_system -lboost_filesystem)
 
 # Optional: Set specific compiler flags for Debug and Release
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")

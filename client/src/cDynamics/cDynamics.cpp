@@ -119,7 +119,7 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 
 	olc::vf2d pos((px - ox), (py - oy));
 	olc::vf2d source_Pos(frame->ox, frame->oy);
-	olc::vf2d source_Size(frame->frameSize, frame->frameSize);
+	olc::vf2d source_Size(frame->width, frame->height);
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
@@ -156,7 +156,7 @@ void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
 
 	olc::vf2d pos((px - ox), (py - oy));
 	olc::vf2d source_Pos(frame->ox, frame->oy);
-	olc::vf2d source_Size(frame->frameSize, frame->frameSize);
+	olc::vf2d source_Size(frame->width, frame->height);
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
