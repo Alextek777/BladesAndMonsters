@@ -2,9 +2,10 @@
 
 
 void cAnimationHandler::load(string name, e_GraphicsState state, e_FactionDirection direction, string path, uint16_t frameCount, uint16_t frameWidth, uint16_t frameHight) {
-    frameHight = frameWidth == -1 ? frameWidth : frameHight;
-
-    animations[name][state][direction] = Animation(frameCount, frameWidth, frameHight, new olc::Sprite(path));
+    animations[name][state][direction] = Animation(frameCount, 
+                                                   frameWidth, 
+                                                   frameHight == 0 ? frameWidth : frameHight, 
+                                                   new olc::Sprite(path));
 }
 
 

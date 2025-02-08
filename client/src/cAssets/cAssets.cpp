@@ -48,7 +48,7 @@ void Assets::LoadAnimations() {
 
 
 	// Trees
-	m_animationHandler.load("TreeAutumn", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/trees/autumn/default.png", 16, 64, 64);
+	m_animationHandler.load("TreeAutumn", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/trees/autumn/default.png", 16, 64);
 
 
 	// Clouds

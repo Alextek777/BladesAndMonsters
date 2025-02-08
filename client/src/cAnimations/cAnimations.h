@@ -15,7 +15,7 @@ struct AnimationFrame;
 class cAnimationHandler {
     map<string, map<e_GraphicsState, map<e_FactionDirection, Animation>>> animations;
 public:
-    void load(string name, e_GraphicsState state, e_FactionDirection direction, string path, uint16_t frameCount, uint16_t frameWidth, uint16_t frameHight = -1);
+    void load(string name, e_GraphicsState state, e_FactionDirection direction, string path, uint16_t frameCount, uint16_t frameWidth, uint16_t frameHight = 0);
 
     AnimationFrame* getAnimationFrame(string &name, e_GraphicsState state, e_FactionDirection direction, uint16_t counter);
 };
