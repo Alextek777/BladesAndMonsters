@@ -13,6 +13,8 @@ cDynamic::cDynamic(string name, float ox, float oy)
 	vx = 0.0f;
 	vy = 0.0f;
 
+	size = olc::vi2d(10, 10);
+
 	bSolidVsMap = true;
 	bSolidVsDyn = true;
 	bFriendly = true;
@@ -124,7 +126,7 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
-		gfx->DrawRect(pos, source_Size, olc::WHITE);
+		gfx->DrawRect(pos, size, olc::WHITE);
 	} 
 
 	// Draw Health bar
@@ -162,7 +164,7 @@ void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
-		gfx->DrawRect(pos, source_Size, olc::WHITE);
+		gfx->DrawRect(pos, size, olc::WHITE);
 	} 
 }
 

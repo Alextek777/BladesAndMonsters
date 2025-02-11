@@ -11,6 +11,9 @@ cDynamic_object_cloud::cDynamic_object_cloud(string name, float px, float py) : 
 	vx = 5 + rand() % 10;
 	vy = 0;
 
+	bSolidVsMap = false;
+	bSolidVsDyn = false;
+
 	m_nGraphicCounter = 0;
 	bIsAttackable = false;
 	m_fTimerLimit = 0.6;

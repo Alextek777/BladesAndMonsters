@@ -1,12 +1,6 @@
 #pragma once
 
 
-#include <iostream>
-#include <string>
-#include <memory.h>
-#include <algorithm>
-
-#include <olcPixelGameEngine.h>
 #include "cMaps/cMap.h"
 #include "cDynamics/creatures/witty.h"
 

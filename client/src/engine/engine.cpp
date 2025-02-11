@@ -16,7 +16,7 @@ bool Engine::OnUserCreate()
 
     m_pPlayer = new cDynamic_Creature_Witty();
 
-    ChangeMap("village", 150, 100);
+    ChangeMap("village", 600, 600);
     UpdateStaticMap(0);
 
     return true;
@@ -47,6 +47,13 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
     for (auto dynamic : m_vecDynamics)
     {
         dynamic->Update(fElapsedTime, m_pPlayer);
+
+        if (m_pCurrentMap->Collides(dynamic, fElapsedTime)) {
+            std::cout << "Stopping object: " << dynamic->sName << "\n";
+            dynamic->vx = 0;
+            dynamic->vy = 0;
+        }
+
         dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
     }
 

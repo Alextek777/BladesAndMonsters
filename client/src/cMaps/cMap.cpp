@@ -39,6 +39,48 @@ bool cMap::GetSolid(int x, int y)
 		return true;
 }
 
+bool cMap::GetSolidWorld(int x, int y) {
+	olc::vi2d world = ToWorld(x, y);
+	std::cout << "ToWorld: " << world << "\n";
+	return GetSolid(world.x, world.y);
+}
+
+bool cMap::Collides(cDynamic* dyn, float fElapsed) {
+	if (!dyn->bSolidVsMap) {
+		return false;
+	}
+
+	if (dyn->vx == 0 && dyn->vy == 0) {
+		return false;
+	}
+
+	int futureX = dyn->px + dyn->vx * fElapsed;
+	int futureY = dyn->py + dyn->vy * fElapsed;
+
+
+	// Upper left corner check
+	if (GetSolidWorld(futureX, futureY)) {
+		return true;
+	}
+
+	// Upper right corner check
+	if (GetSolidWorld(futureX + dyn->size.x, futureY)) {
+		return true;
+	}
+
+	// Lowwer left corner check
+	if (GetSolidWorld(futureX, futureY + dyn->size.y)) {
+		return true;
+	}
+
+	// Lowwer right corner check
+	if (GetSolidWorld(futureX + dyn->size.x, futureY + dyn->size.y)) {
+		return true;
+	}
+
+	return false;
+}
+
 bool cMap::Create(string fileData, string name)
 {
 	sName = name;
@@ -62,15 +104,6 @@ bool cMap::Create(string fileData, string name)
 
 bool cMap::DrawStaticMap(float ox, float oy) {
 	gfx->SetDrawTarget(backgroundLayer);
-
-    auto ToScreen = [&](int x, int y)
-    {			
-        return olc::vi2d
-        {
-            (vOrigin.x * vTileSize.x) + (x - y) * (vTileSize.x / 2),
-            (vOrigin.y * vTileSize.y) + (x + y) * (vTileSize.y / 2)
-        };
-    };
 
     gfx->Clear(olc::WHITE);
     gfx->SetPixelMode(olc::Pixel::MASK);
@@ -107,3 +140,20 @@ bool cMap::DrawStaticMap(float ox, float oy) {
 
 	return true;
 }
+
+olc::vi2d cMap::ToScreen(int x, int y){			
+	return olc::vi2d {
+		(vOrigin.x * vTileSize.x) + (x - y) * (vTileSize.x / 2),
+		(vOrigin.y * vTileSize.y) + (x + y) * (vTileSize.y / 2)
+	};
+};
+
+olc::vi2d cMap::ToWorld(int screen_x, int screen_y) {
+	int adjusted_x = screen_x - (vOrigin.x * vTileSize.x);
+	int adjusted_y = screen_y - (vOrigin.y * vTileSize.y);
+
+	int x = (adjusted_x / (vTileSize.x / 2) + adjusted_y / (vTileSize.y / 2)) / 2;
+	int y = (adjusted_y / (vTileSize.y / 2) - adjusted_x / (vTileSize.x / 2)) / 2;
+
+	return olc::vi2d{x, y};
+};

@@ -27,16 +27,23 @@ public:
 	olc::vi2d vOrigin;
 
 	int GetIndex(int x, int y);
-	bool GetSolid(int x, int y);
 	bool Create(string fileData, string name);
 
+	bool GetSolid(int x, int y);
+	bool GetSolidWorld(int x, int y);
 
+	bool Collides(cDynamic* dyn, float fElapsed);
 
 	virtual bool PopulateDynamics(vector<cDynamic*> &vecDyns) {
 		return false;
 	}
 
 	virtual bool DrawStaticMap(float ox, float oy);
+
+
+protected:
+	olc::vi2d ToScreen(int x, int y);
+	olc::vi2d ToWorld(int x, int y);
 
 protected:
 	int *m_indices = nullptr;
