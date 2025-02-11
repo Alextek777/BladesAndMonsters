@@ -43,7 +43,6 @@ bool cMap::GetSolid(int x, int y)
 
 bool cMap::GetSolidWorld(int x, int y) {
 	olc::vi2d world = ToWorld(x, y);
-	std::cout << "ToWorld: " << world << "\n";
 	return GetSolid(world.x, world.y);
 }
 

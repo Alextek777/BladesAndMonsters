@@ -1,7 +1,7 @@
 #define OLC_PGE_APPLICATION
 #include "engine/engine.h"
 
-e_GameMode GAMEMODE = DEBUG;
+e_GameMode GAMEMODE = RELEASE;
 
 int main()
 {

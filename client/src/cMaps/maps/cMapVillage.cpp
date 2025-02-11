@@ -24,7 +24,12 @@ bool cMap_Village::PopulateDynamics(vector<cDynamic*> &vecDyns) {
 	vecDyns.push_back(new cDynamic_object_cloud("cloud", 170, 100));
 	vecDyns.push_back(new cDynamic_object_cloud("cloud", 50, 70));
 	vecDyns.push_back(new cDynamic_object_cloud("cloud", 150, 210));
-	
+
+
+
+	for (int i = 0; i< 30; i++) {
+		vecDyns.push_back(new cDynamic_object_cloud("cloud", 50 + rand() % 350, 50 + rand() % 350));
+	}
 
 	// // Add Items
 	// vecDyns.push_back(new cDynamic_Item(10, 10, RPG_Assets::get().GetItem("Small Health")));

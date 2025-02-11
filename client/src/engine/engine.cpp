@@ -46,14 +46,12 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
 
     for (auto dynamic : m_vecDynamics)
     {
-        dynamic->Update(fElapsedTime, m_pPlayer);
-
         if (m_pCurrentMap->Collides(dynamic, fElapsedTime)) {
-            std::cout << "Stopping object: " << dynamic->sName << "\n";
             dynamic->vx = 0;
             dynamic->vy = 0;
         }
 
+        dynamic->Update(fElapsedTime, m_pPlayer);
         dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
     }
 

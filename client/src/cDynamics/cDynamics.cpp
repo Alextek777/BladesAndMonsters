@@ -126,6 +126,7 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
+		size = source_Size;
 		gfx->DrawRect(pos, size, olc::WHITE);
 	} 
 
@@ -164,6 +165,7 @@ void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
 	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
+		size = source_Size;
 		gfx->DrawRect(pos, size, olc::WHITE);
 	} 
 }
