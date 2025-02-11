@@ -2,6 +2,8 @@
 #include "cMap.h"
 #include <fstream>
 
+#include <cmath>
+
 cMap::cMap()
 {
 
@@ -103,21 +105,19 @@ bool cMap::Create(string fileData, string name)
 }
 
 bool cMap::DrawStaticMap(float ox, float oy) {
-	gfx->SetDrawTarget(backgroundLayer);
-
+    gfx->SetDrawTarget(backgroundLayer);
     gfx->Clear(olc::WHITE);
     gfx->SetPixelMode(olc::Pixel::MASK);
-    for (int y = 0; y < nHeight; y++)
-    {
-        for (int x = 0; x < nWidth; x++)
-        {
+
+
+    int minX = std::max(0, ToWorld(ox, oy).x - 1);
+    int minY = std::max(0, ToWorld(ox + gfx->ScreenWidth(), oy).y - 1);
+    int maxX = std::min(nWidth, ToWorld(ox + gfx->ScreenWidth(), oy + gfx->ScreenHeight()).x + 2);
+    int maxY = std::min(nHeight, ToWorld(ox, oy + gfx->ScreenHeight()).y + 2);
+
+    for (int y = minY; y < maxY; y++) {
+        for (int x = minX; x < maxX; x++) {
             olc::vi2d vWorld = ToScreen(x, y);
-
-
-            // // TODO: refactor -> draw only visible tiles
-            // if (vWorld.y > gfx->ScreenHeight() || vWorld.x > gfx->ScreenWidth()) {
-            //     break;
-            // }
 
             olc::Sprite* sprite = Assets::get().GetSprite(GetIndex(x, y));
             if (sprite == nullptr) {
@@ -126,7 +126,6 @@ bool cMap::DrawStaticMap(float ox, float oy) {
             }
 
             vWorld.y = vWorld.y - sprite->height + vTileSize.y;
-    
             vWorld.x -= ox;
             vWorld.y -= oy;
 
@@ -135,10 +134,10 @@ bool cMap::DrawStaticMap(float ox, float oy) {
     }
 
     gfx->SetPixelMode(olc::Pixel::NORMAL);
-	gfx->EnableLayer(backgroundLayer, true);
-	gfx->SetDrawTarget(nullptr);
+    gfx->EnableLayer(backgroundLayer, true);
+    gfx->SetDrawTarget(nullptr);
 
-	return true;
+    return true;
 }
 
 olc::vi2d cMap::ToScreen(int x, int y){			
