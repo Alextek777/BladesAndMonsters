@@ -50,7 +50,6 @@ void Assets::LoadAnimations() {
 	// Trees
 	m_animationHandler.load("TreeAutumn", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/trees/autumn/default.png", 16, 64);
 
-
 	// Clouds
 	// m_animationHandler.load("cloud", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/clouds/default.png", 4, 40);
 	m_animationHandler.load("cloud", e_GraphicsState::DEFAULT_GS, e_FactionDirection::DEFAULT_FD, "animations/clouds/SunnyDayCloud/default.png", 8, 40, 120);

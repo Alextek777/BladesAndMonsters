@@ -4,7 +4,7 @@
 cDynamic_Creature_Orc::cDynamic_Creature_Orc(string name, float px, float py) : cDynamic_Creature(name)
 {
 	bFriendly = false;
-	nHealth = 9;
+	nHealth = 7;
 	nHealthMax = 10;
 	m_fStateTick = 2.0f;
 	this->px = px;

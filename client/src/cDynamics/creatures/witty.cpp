@@ -3,7 +3,7 @@
 cDynamic_Creature_Witty::cDynamic_Creature_Witty() : cDynamic_Creature("witty")
 {
 	bFriendly = true;
-	nHealth = 9;
+	nHealth = 5;
 	nHealthMax = 10;
 	m_fStateTick = 2.0f;
 	// pEquipedWeapon = (cWeapon*)Assets::get().GetItem("Basic Sword");

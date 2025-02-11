@@ -126,6 +126,12 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 	if (GAMEMODE == DEBUG) {
 		gfx->DrawRect(pos, source_Size, olc::WHITE);
 	} 
+
+	// Draw Health bar
+	gfx->DrawRect(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x, 3), olc::GREEN);
+
+	float curH = float(nHealth) / float(nHealthMax);
+	gfx->FillRect(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x * curH, 3), olc::GREEN);
 }
 
 void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
