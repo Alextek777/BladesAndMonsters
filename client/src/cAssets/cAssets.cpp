@@ -17,8 +17,8 @@ void Assets::LoadAnimations() {
 	// Characters
 	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::EAST, "animations/creatures/witty/walking/east.png", 8, 20);
 	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::WEST, "animations/creatures/witty/walking/west.png", 8, 20);
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::NORTH, "animations/creatures/witty/walking/east.png", 8, 20);
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, "animations/creatures/witty/walking/west.png", 8, 20);
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::NORTH, "animations/creatures/witty/walking/north.png", 4, 20);
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, "animations/creatures/witty/walking/south.png", 4, 20);
 
 	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::EAST, "animations/creatures/witty/standing/east.png", 6, 20);
 	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::WEST, "animations/creatures/witty/standing/west.png", 6, 20);
