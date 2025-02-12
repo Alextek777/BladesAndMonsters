@@ -1,9 +1,10 @@
 #pragma once 
+
 #include "cAssets/cAssets.h"
-#include <olcPixelGameEngine.h>
 #include "consts/consts.h"
 
 class Engine;
+class AnimationFrame;
 
 using namespace std;
 
@@ -28,9 +29,16 @@ public:
 	string sName;
 
 protected:
+	e_FactionDirection m_nFacingDirection;
+	e_GraphicsState m_nGraphicState;
+	uint16_t animetionFrameCount = 0;
+	AnimationFrame* frame;
+	
 	int m_nGraphicCounter;
 	float m_fTimerLimit;
 	float m_fTimer;
+
+	bool loadFrame();
 
 public:
 	virtual void DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {}
@@ -46,10 +54,6 @@ class cDynamic_Creature : public cDynamic
 {
 public:
 	cDynamic_Creature(string n);
-
-protected:
-	e_FactionDirection m_nFacingDirection;
-	e_GraphicsState m_nGraphicState;
 
 public:
 	int nHealth;
@@ -71,6 +75,7 @@ protected:
 	float m_fKnockBackTimer = 0.0f;
 	float m_fKnockBackDX = 0.0f;
 	float m_fKnockBackDY = 0.0f;
+	
 
 };
 

@@ -12,7 +12,7 @@ cDynamic_Creature_Witty::cDynamic_Creature_Witty() : cDynamic_Creature("witty")
 void cDynamic_Creature_Witty::PerformAttack()
 {
 	m_nGraphicState = ATTACKING;
-	m_nGraphicCounter = 1;
+	m_nGraphicCounter = 0;
 	// if (pEquipedWeapon == nullptr)
 	// 	return;
 

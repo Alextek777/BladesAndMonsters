@@ -27,7 +27,7 @@ bool cMap_Village::PopulateDynamics(vector<cDynamic*> &vecDyns) {
 
 
 
-	for (int i = 0; i< 30; i++) {
+	for (int i = 0; i< 5; i++) {
 		vecDyns.push_back(new cDynamic_object_cloud("cloud", 50 + rand() % 350, 50 + rand() % 350));
 	}
 

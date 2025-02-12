@@ -5,7 +5,7 @@
 
 Engine::Engine()
 {
-    sAppName = "Top Down Role Playing Game";
+    sAppName = "Blades And Monsters";
 }
 
 bool Engine::OnUserCreate()
@@ -16,7 +16,7 @@ bool Engine::OnUserCreate()
 
     m_pPlayer = new cDynamic_Creature_Witty();
 
-    ChangeMap("village", 600, 600);
+    ChangeMap("village", 200, 300);
     UpdateStaticMap(0);
 
     return true;
@@ -41,11 +41,12 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
     HandleUserInput(fElapsedTime);
 
     std::sort(m_vecDynamics.begin(), m_vecDynamics.end(), [](const cDynamic *a, const cDynamic *b)
-              { return a->py < b->py; });
+              { return (a->py + a->size.y) < (b->py + b->size.y); });
 
 
     for (auto dynamic : m_vecDynamics)
     {
+        // Check static map collision
         if (m_pCurrentMap->Collides(dynamic, fElapsedTime)) {
             dynamic->vx = 0;
             dynamic->vy = 0;
@@ -76,6 +77,7 @@ void Engine::ChangeMap(string sMapName, float x, float y)
     // 	q->PopulateDynamics(m_vecDynamics, m_pCurrentMap->sName);
 }
 
+// Camera handle
 void Engine::UpdateStaticMap(float fElapsedTime)
 {
     olc::vi2d mouse = GetMousePos();
@@ -128,6 +130,12 @@ void Engine::HandleUserInput(float fElapsedTime)
 
     if (GetKey(olc::RIGHT).bHeld)
         m_pPlayer->vx = 30.0f;
+
+    // Normalize Speed vector
+    if (m_pPlayer->vx != 0 && m_pPlayer->vy != 0) {
+        m_pPlayer->vx * 0.7071; // 1 / sqrt(2)
+        m_pPlayer->vy * 0.7071; // 1 / sqrt(2)
+    }
 
     // Atack
     if (GetKey(olc::SPACE).bPressed)
