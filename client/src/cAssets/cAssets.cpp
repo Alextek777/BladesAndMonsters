@@ -15,20 +15,20 @@ Assets::~Assets()
 
 void Assets::LoadAnimations() {
 	// Characters
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::EAST, "animations/creatures/witty/walking/east.png", 8, 100);
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::WEST, "animations/creatures/witty/walking/west.png", 8, 100);
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::NORTH, "animations/creatures/witty/walking/east.png", 8, 100);
-	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, "animations/creatures/witty/walking/west.png", 8, 100);
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::EAST, "animations/creatures/witty/walking/east.png", 8, 20);
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::WEST, "animations/creatures/witty/walking/west.png", 8, 20);
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::NORTH, "animations/creatures/witty/walking/east.png", 8, 20);
+	m_animationHandler.load("witty", e_GraphicsState::WALKING, e_FactionDirection::SOUTH, "animations/creatures/witty/walking/west.png", 8, 20);
 
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::EAST, "animations/creatures/witty/standing/east.png", 6, 100);
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::WEST, "animations/creatures/witty/standing/west.png", 6, 100);
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::NORTH, "animations/creatures/witty/standing/east.png", 6, 100);
-	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, "animations/creatures/witty/standing/west.png", 6, 100);
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::EAST, "animations/creatures/witty/standing/east.png", 6, 20);
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::WEST, "animations/creatures/witty/standing/west.png", 6, 20);
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::NORTH, "animations/creatures/witty/standing/east.png", 6, 20);
+	m_animationHandler.load("witty", e_GraphicsState::STANDING, e_FactionDirection::SOUTH, "animations/creatures/witty/standing/west.png", 6, 20);
 
-	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::EAST, "animations/creatures/witty/attacking/east.png", 6, 100);
-	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::WEST, "animations/creatures/witty/attacking/west.png", 6, 100);
-	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::NORTH, "animations/creatures/witty/attacking/east.png", 6, 100);
-	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::SOUTH, "animations/creatures/witty/attacking/west.png", 6, 100);
+	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::EAST, "animations/creatures/witty/attacking/east.png", 6, 30, 28);
+	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::WEST, "animations/creatures/witty/attacking/west.png", 6, 30, 28);
+	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::NORTH, "animations/creatures/witty/attacking/east.png", 6, 30, 28);
+	m_animationHandler.load("witty", e_GraphicsState::ATTACKING, e_FactionDirection::SOUTH, "animations/creatures/witty/attacking/west.png", 6, 30, 28);
 
 
 	m_animationHandler.load("orc", e_GraphicsState::WALKING, e_FactionDirection::EAST, "animations/creatures/orc/walking/east.png", 8, 100);
