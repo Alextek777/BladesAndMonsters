@@ -15,7 +15,8 @@ bool Engine::OnUserCreate()
     Assets::get().LoadAnimations();
 
 
-    m_itemMenu = new cItemMenu(this);
+    m_pInventory   =  new cInventory(this);
+    m_pDefaultMenu = new cDefaultMenu(this);
 
     m_pPlayer = new cDynamic_Creature_Witty();
 
@@ -30,18 +31,12 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
     HandleUserInput(fElapsedTime);
 
-    // switch (m_nGameMode)
-    // {
-    // case MODE_LOCAL_MAP:
-    //     return UpdateLocalMap(fElapsedTime);
-    // case MODE_INVENTORY:
-    //     return UpdateInventory(fElapsedTime);
-    // }
-
-    UpdateLocalMap(fElapsedTime);
-
-    if (m_nGameMode == MODE_INVENTORY) {
-        UpdateInventory(fElapsedTime);
+    switch (m_nGameMode)
+    {
+    case MODE_LOCAL_MAP:
+        return UpdateLocalMap(fElapsedTime);
+    default:
+        return UpdateMenu(fElapsedTime);
     }
 
     return true;
@@ -73,8 +68,14 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
     return true;
 }
 
-bool Engine::UpdateInventory(float fElapsedTime) {
-    m_itemMenu->DrawSelf(fElapsedTime);
+bool Engine::UpdateMenu(float fElapsedTime) {
+    if ( m_nGameMode == MODE_INVENTORY ) {
+        m_pInventory->DrawSelf(fElapsedTime);
+    }
+
+    if ( m_nGameMode == MODE_MENU ) {
+        m_pDefaultMenu->DrawSelf(fElapsedTime);
+    }
 
     return true;
 }
@@ -165,4 +166,8 @@ void Engine::HandleUserInput(float fElapsedTime)
     // Open Inventory
     if (GetKey(olc::TAB).bPressed) 
         m_nGameMode = m_nGameMode == MODE_INVENTORY ? MODE_LOCAL_MAP : MODE_INVENTORY;
+
+    // Open Default Menu
+    if (GetKey(olc::ESCAPE).bPressed) 
+        m_nGameMode = m_nGameMode == MODE_MENU ? MODE_LOCAL_MAP : MODE_MENU;
 }

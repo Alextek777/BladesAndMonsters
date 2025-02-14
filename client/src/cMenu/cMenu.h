@@ -12,7 +12,7 @@ public:
         size = olc::vi2d(6 * gfx->ScreenWidth() / 10, 6 * gfx->ScreenHeight() / 10);
     }
 
-    virtual void DrawSelf(float fElapsedTime){};
+    virtual void DrawSelf(float fElapsedTime) = 0;
 
 protected:
     olc::PixelGameEngine *gfx;

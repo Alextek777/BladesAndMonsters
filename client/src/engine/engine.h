@@ -3,7 +3,8 @@
 
 #include "cMaps/cMap.h"
 #include "cDynamics/creatures/witty.h"
-#include "cMenu/ItemMenu/cItemMenu.h"
+#include "cMenu/cInventory/cInventory.h"
+#include "cMenu/cDefaultMenu/cDefaultMenu.h"
 
 
 using namespace std;
@@ -25,7 +26,8 @@ private:
 	float fCameraPosY = 0.0f;
 
 
-	cItemMenu *m_itemMenu;
+	cInventory   *m_pInventory;
+	cDefaultMenu *m_pDefaultMenu;
 
 	enum
 	{
@@ -33,6 +35,7 @@ private:
 		MODE_LOCAL_MAP,
 		MODE_WORLD_MAP,
 		MODE_INVENTORY,
+		MODE_MENU,
 		MODE_SHOP
 	};
 
@@ -43,8 +46,8 @@ protected:
 	bool OnUserUpdate(float fElapsedTime) override;
 
 	bool UpdateLocalMap(float fElapsedTime);
-	bool UpdateInventory(float fElapsedTime);
-	
+	bool UpdateMenu(float fElapsedTime);
+
 
 	void UpdateStaticMap(float fElapsedTime);
 	void HandleUserInput(float fElapsedTime);
