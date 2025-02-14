@@ -3,6 +3,7 @@
 
 #include "cMaps/cMap.h"
 #include "cDynamics/creatures/witty.h"
+#include "cMenu/ItemMenu/cItemMenu.h"
 
 
 using namespace std;
@@ -23,6 +24,9 @@ private:
 	float fCameraPosX = 0.0f;
 	float fCameraPosY = 0.0f;
 
+
+	cItemMenu *m_itemMenu;
+
 	enum
 	{
 		MODE_TITLE,
@@ -39,6 +43,9 @@ protected:
 	bool OnUserUpdate(float fElapsedTime) override;
 
 	bool UpdateLocalMap(float fElapsedTime);
+	bool UpdateInventory(float fElapsedTime);
+	
+
 	void UpdateStaticMap(float fElapsedTime);
 	void HandleUserInput(float fElapsedTime);
 

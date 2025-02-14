@@ -1,7 +1,6 @@
 #include "cDynamics.h"
 #include "engine/engine.h"
 
-
 extern e_GameMode GAMEMODE; 
 
 cDynamic::cDynamic(string name, float ox, float oy)
@@ -151,9 +150,9 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 	} 
 
 	// Draw Health bar
-	gfx->DrawRectDecal(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x, 3), olc::GREEN);
 	float curH = float(nHealth) / float(nHealthMax);
-	gfx->FillRectDecal(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x * curH, 3), olc::GREEN);
+	gfx->FillRectDecal(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x * curH, 3), olc::RED);
+	gfx->DrawRectDecal(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x, 3), olc::BLACK);
 }
 
 void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)

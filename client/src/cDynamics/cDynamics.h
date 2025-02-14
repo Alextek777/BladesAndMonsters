@@ -33,7 +33,7 @@ protected:
 	e_GraphicsState m_nGraphicState;
 	uint16_t animetionFrameCount = 0;
 	AnimationFrame* frame;
-	
+
 	int m_nGraphicCounter;
 	float m_fTimerLimit;
 	float m_fTimer;

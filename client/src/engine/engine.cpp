@@ -14,6 +14,9 @@ bool Engine::OnUserCreate()
     Assets::get().LoadMaps(this);
     Assets::get().LoadAnimations();
 
+
+    m_itemMenu = new cItemMenu(this);
+
     m_pPlayer = new cDynamic_Creature_Witty();
 
     ChangeMap("village", 200, 300);
@@ -24,10 +27,21 @@ bool Engine::OnUserCreate()
 
 bool Engine::OnUserUpdate(float fElapsedTime)
 {
-    switch (m_nGameMode)
-    {
-    case MODE_LOCAL_MAP:
-        return UpdateLocalMap(fElapsedTime);
+
+    HandleUserInput(fElapsedTime);
+
+    // switch (m_nGameMode)
+    // {
+    // case MODE_LOCAL_MAP:
+    //     return UpdateLocalMap(fElapsedTime);
+    // case MODE_INVENTORY:
+    //     return UpdateInventory(fElapsedTime);
+    // }
+
+    UpdateLocalMap(fElapsedTime);
+
+    if (m_nGameMode == MODE_INVENTORY) {
+        UpdateInventory(fElapsedTime);
     }
 
     return true;
@@ -38,7 +52,6 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
     Clear(olc::BLANK);
 
     UpdateStaticMap(fElapsedTime);
-    HandleUserInput(fElapsedTime);
 
     std::sort(m_vecDynamics.begin(), m_vecDynamics.end(), [](const cDynamic *a, const cDynamic *b)
               { return (a->py + a->size.y) < (b->py + b->size.y); });
@@ -56,6 +69,12 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
     }
 
+
+    return true;
+}
+
+bool Engine::UpdateInventory(float fElapsedTime) {
+    m_itemMenu->DrawSelf(fElapsedTime);
 
     return true;
 }
@@ -85,25 +104,25 @@ void Engine::UpdateStaticMap(float fElapsedTime)
 
     if (mouse.x < 10)
     {
-        fCameraPosX -= 100 * fElapsedTime;
+        fCameraPosX -= 150 * fElapsedTime;
         updateMap = true;
     }
 
     if (mouse.x > ScreenWidth() - 10)
     {
-        fCameraPosX += 100 * fElapsedTime;
+        fCameraPosX += 150 * fElapsedTime;
         updateMap = true;
     }
 
     if (mouse.y < 10)
     {
-        fCameraPosY -= 100 * fElapsedTime;
+        fCameraPosY -= 150 * fElapsedTime;
         updateMap = true;
     }
 
     if (mouse.y > ScreenHeight() - 10)
     {
-        fCameraPosY += 100 * fElapsedTime;
+        fCameraPosY += 150 * fElapsedTime;
         updateMap = true;
     }
 
@@ -118,18 +137,24 @@ void Engine::HandleUserInput(float fElapsedTime)
     m_pPlayer->vx = 0;
     m_pPlayer->vy = 0;
 
+    // Atack
+    if (GetKey(olc::SPACE).bPressed)
+        m_pPlayer->PerformAttack();
+
+
     // Walk
-    if (GetKey(olc::UP).bHeld)
+    if (GetKey(olc::W).bHeld)
         m_pPlayer->vy = -30.0f;
 
-    if (GetKey(olc::DOWN).bHeld)
+    if (GetKey(olc::S).bHeld)
         m_pPlayer->vy = 30.0f;
 
-    if (GetKey(olc::LEFT).bHeld)
+    if (GetKey(olc::A).bHeld)
         m_pPlayer->vx = -30.0f;
 
-    if (GetKey(olc::RIGHT).bHeld)
+    if (GetKey(olc::D).bHeld)
         m_pPlayer->vx = 30.0f;
+
 
     // Normalize Speed vector
     if (m_pPlayer->vx != 0 && m_pPlayer->vy != 0) {
@@ -137,7 +162,7 @@ void Engine::HandleUserInput(float fElapsedTime)
         m_pPlayer->vy * 0.7071; // 1 / sqrt(2)
     }
 
-    // Atack
-    if (GetKey(olc::SPACE).bPressed)
-        m_pPlayer->PerformAttack();
+    // Open Inventory
+    if (GetKey(olc::TAB).bPressed) 
+        m_nGameMode = m_nGameMode == MODE_INVENTORY ? MODE_LOCAL_MAP : MODE_INVENTORY;
 }
