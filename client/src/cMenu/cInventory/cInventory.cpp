@@ -3,6 +3,8 @@
 
 void cInventory::DrawSelf(float fElapsedTime) {
 
-    gfx->FillRectDecal(pos, size,  olc::Pixel(38, 24, 24, 180));
+    //gfx->FillRectDecal(pos, size,  olc::Pixel(38, 24, 24, 180));
+
+    gfx->DrawDecal(pos, decal);
 
 }

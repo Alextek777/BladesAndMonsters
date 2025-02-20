@@ -15,6 +15,4 @@ public:
 protected:
     virtual void onClick() {};
     virtual void onHover() {};
-
-    olc::vf2d
-}
+};

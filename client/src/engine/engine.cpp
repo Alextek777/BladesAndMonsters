@@ -31,13 +31,16 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
     HandleUserInput(fElapsedTime);
 
-    switch (m_nGameMode)
-    {
-    case MODE_LOCAL_MAP:
-        return UpdateLocalMap(fElapsedTime);
-    default:
-        return UpdateMenu(fElapsedTime);
-    }
+    // switch (m_nGameMode)
+    // {
+    // case MODE_LOCAL_MAP:
+    //     return UpdateLocalMap(fElapsedTime);
+    // default:
+    //     return UpdateMenu(fElapsedTime);
+    // }
+
+    UpdateLocalMap(fElapsedTime);
+    UpdateMenu(fElapsedTime);
 
     return true;
 }
