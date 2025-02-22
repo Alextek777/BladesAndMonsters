@@ -23,13 +23,44 @@ bool Engine::OnUserCreate()
     ChangeMap("village", 200, 300);
     UpdateStaticMap(0);
 
-    soloud.init();
-    sample.load("sounds/backend/1.wav");
 
-    soloud.play(sample);
+
+
+    // Initialize SoLoud and check for errors
+    SoLoud::result initResult = soloud.init();
+    if (initResult != SoLoud::SO_NO_ERROR)
+    {
+        std::cerr << "Failed to initialize SoLoud! Error code: " << initResult << std::endl;
+        return false; // Exit OnUserCreate() with failure
+    }
+
+    // Load the sound file and check for errors
+    SoLoud::result loadResult = sample.load("sounds/backend/1.wav");
+    if (loadResult != SoLoud::SO_NO_ERROR)
+    {
+        std::cerr << "Failed to load sound file! Error code: " << loadResult << std::endl;
+        soloud.deinit(); // Clean up SoLoud before exiting
+        return false; // Exit OnUserCreate() with failure
+    }
+
+    // Play the sample and store the handle
     SoLoud::handle bgMusicHandle = soloud.play(sample);
+    if (bgMusicHandle == 0) // Check if playback failed
+    {
+        std::cerr << "Failed to play sound!" << std::endl;
+        soloud.deinit(); // Clean up SoLoud before exiting
+        return false; // Exit OnUserCreate() with failure
+    }
+
+    // Set the sound to loop
     soloud.setLooping(bgMusicHandle, true);
+
+    // Set the volume of the background music
     soloud.setVolume(bgMusicHandle, 0.5f);
+
+
+
+
 
     return true;
 }

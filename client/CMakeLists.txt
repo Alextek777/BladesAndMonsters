@@ -8,6 +8,7 @@ file(COPY content/sprites DESTINATION ${CMAKE_BINARY_DIR}/bin)
 file(COPY content/maps DESTINATION ${CMAKE_BINARY_DIR}/bin)
 file(COPY content/animations DESTINATION ${CMAKE_BINARY_DIR}/bin)
 file(COPY content/widgets DESTINATION ${CMAKE_BINARY_DIR}/bin)
+file(COPY content/sounds DESTINATION ${CMAKE_BINARY_DIR}/bin)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)

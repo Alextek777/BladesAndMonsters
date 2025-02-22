@@ -34,7 +34,6 @@ tasks:
       - build
     desc: "Building project"
     cmds:
-      - task clean
       - task cmake
       - task make
 
