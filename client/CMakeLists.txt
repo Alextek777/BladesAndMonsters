@@ -19,12 +19,16 @@ endif()
 
 file(GLOB_RECURSE SRC_FILES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
+add_subdirectory(${CMAKE_SOURCE_DIR}/libs/soloud)
+
 include_directories(${CMAKE_SOURCE_DIR}/src)
-include_directories(${CMAKE_SOURCE_DIR}/libs/src)
+include_directories(${CMAKE_SOURCE_DIR}/libs/olcPixelGameEngine)
+include_directories(${CMAKE_SOURCE_DIR}/libs/soloud/include)
+
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
-target_link_libraries(${PROJECT_NAME} -lpng -lGL -lX11 -lboost_system -lboost_filesystem)
+target_link_libraries(${PROJECT_NAME} -lpng -lGL -lX11 soloud -lboost_system -lboost_filesystem)
 
 # Optional: Set specific compiler flags for Debug and Release
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")

@@ -6,6 +6,9 @@
 #include "cMenu/cInventory/cInventory.h"
 #include "cMenu/cDefaultMenu/cDefaultMenu.h"
 
+#include "soloud.h"
+#include "soloud_wav.h"
+
 
 using namespace std;
 
@@ -15,6 +18,9 @@ public:
 	Engine();
 
 private:
+	SoLoud::Soloud soloud;
+	SoLoud::Wav sample;
+
 	cMap *m_pCurrentMap = nullptr;
 
 	cDynamic_Creature *m_pPlayer = nullptr;

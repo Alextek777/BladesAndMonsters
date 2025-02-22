@@ -23,6 +23,14 @@ bool Engine::OnUserCreate()
     ChangeMap("village", 200, 300);
     UpdateStaticMap(0);
 
+    soloud.init();
+    sample.load("sounds/backend/1.wav");
+
+    soloud.play(sample);
+    SoLoud::handle bgMusicHandle = soloud.play(sample);
+    soloud.setLooping(bgMusicHandle, true);
+    soloud.setVolume(bgMusicHandle, 0.5f);
+
     return true;
 }
 
