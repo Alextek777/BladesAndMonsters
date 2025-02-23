@@ -52,7 +52,7 @@ bool Engine::OnUserCreate()
         return false; // Exit OnUserCreate() with failure
     }
 
-    // Set the sound to loop
+    // // Set the sound to loop
     soloud.setLooping(bgMusicHandle, true);
 
     // Set the volume of the background music
@@ -187,16 +187,16 @@ void Engine::HandleUserInput(float fElapsedTime)
 
     // Walk
     if (GetKey(olc::W).bHeld)
-        m_pPlayer->vy = -30.0f;
+        m_pPlayer->vy += -30.0f;
 
     if (GetKey(olc::S).bHeld)
-        m_pPlayer->vy = 30.0f;
+        m_pPlayer->vy += 30.0f;
 
     if (GetKey(olc::A).bHeld)
-        m_pPlayer->vx = -30.0f;
+        m_pPlayer->vx += -30.0f;
 
     if (GetKey(olc::D).bHeld)
-        m_pPlayer->vx = 30.0f;
+        m_pPlayer->vx += 30.0f;
 
 
     // Normalize Speed vector
