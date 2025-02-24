@@ -9,7 +9,6 @@
 #include "soloud.h"
 #include "soloud_wav.h"
 
-
 using namespace std;
 
 class Engine : public olc::PixelGameEngine
