@@ -4,6 +4,9 @@
 #include "cAssets/cAssets.h"
 #include "cDynamics/cDynamics.h"
 
+
+#include <map>
+
 using namespace std;
 
 class cDynamic;
@@ -13,7 +16,6 @@ class cMap
 
 public:
 	cMap();
-	cMap(olc::PixelGameEngine *gfx);
 	~cMap();
 
 public:
@@ -40,6 +42,7 @@ public:
 
 	virtual bool DrawStaticMap(float ox, float oy);
 
+	static olc::PixelGameEngine* g_engine;
 
 protected:
 	olc::vi2d ToScreen(int x, int y);
@@ -48,7 +51,5 @@ protected:
 protected:
 	int *m_indices = nullptr;
 	bool *m_solids = nullptr;
-
-	olc::PixelGameEngine *gfx;
 	int backgroundLayer;
 };

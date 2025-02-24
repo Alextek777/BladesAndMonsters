@@ -4,19 +4,15 @@
 
 #include <cmath>
 
-cMap::cMap()
-{
+olc::PixelGameEngine* cMap::g_engine = nullptr;
 
-}
-
-cMap::cMap(olc::PixelGameEngine *gfx) {
+cMap::cMap() {
 	nWidth = 0;
 	nHeight = 0;
 	m_solids = nullptr;
 	m_indices = nullptr;
 
-	this->gfx = gfx;
-	backgroundLayer = gfx->CreateLayer();
+	backgroundLayer = g_engine->CreateLayer();
 }
 
 cMap::~cMap()
@@ -104,15 +100,15 @@ bool cMap::Create(string fileData, string name)
 }
 
 bool cMap::DrawStaticMap(float ox, float oy) {
-    gfx->SetDrawTarget(backgroundLayer);
-    gfx->Clear(olc::WHITE);
-    gfx->SetPixelMode(olc::Pixel::MASK);
+    g_engine->SetDrawTarget(backgroundLayer);
+    g_engine->Clear(olc::WHITE);
+    g_engine->SetPixelMode(olc::Pixel::MASK);
 
 
     int minX = std::max(0, ToWorld(ox, oy).x - 1);
-    int minY = std::max(0, ToWorld(ox + gfx->ScreenWidth(), oy).y - 1);
-    int maxX = std::min(nWidth, ToWorld(ox + gfx->ScreenWidth(), oy + gfx->ScreenHeight()).x + 2);
-    int maxY = std::min(nHeight, ToWorld(ox, oy + gfx->ScreenHeight()).y + 2);
+    int minY = std::max(0, ToWorld(ox + g_engine->ScreenWidth(), oy).y - 1);
+    int maxX = std::min(nWidth, ToWorld(ox + g_engine->ScreenWidth(), oy + g_engine->ScreenHeight()).x + 2);
+    int maxY = std::min(nHeight, ToWorld(ox, oy + g_engine->ScreenHeight()).y + 2);
 
     for (int y = minY; y < maxY; y++) {
         for (int x = minX; x < maxX; x++) {
@@ -128,13 +124,13 @@ bool cMap::DrawStaticMap(float ox, float oy) {
             vWorld.x -= ox;
             vWorld.y -= oy;
 
-            gfx->DrawSprite(vWorld, sprite);
+            g_engine->DrawSprite(vWorld, sprite);
         }
     }
 
-    gfx->SetPixelMode(olc::Pixel::NORMAL);
-    gfx->EnableLayer(backgroundLayer, true);
-    gfx->SetDrawTarget(nullptr);
+    g_engine->SetPixelMode(olc::Pixel::NORMAL);
+    g_engine->EnableLayer(backgroundLayer, true);
+    g_engine->SetDrawTarget(nullptr);
 
     return true;
 }

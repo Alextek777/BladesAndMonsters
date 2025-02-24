@@ -10,8 +10,9 @@ Engine::Engine()
 
 bool Engine::OnUserCreate()
 {
+    cMap::g_engine = this;
+
     Assets::get().LoadSprites();
-    Assets::get().LoadMaps(this);
     Assets::get().LoadAnimations();
 
 
@@ -130,8 +131,8 @@ void Engine::ChangeMap(string sMapName, float x, float y)
     m_pPlayer->px = x;
     m_pPlayer->py = y;
 
-    m_pCurrentMap = Assets::get().GetMap(sMapName);
-
+    //  TODO: CREATE FACTORY TO CREATE maps
+    m_pCurrentMap = new cMap_Village();
     m_pCurrentMap->PopulateDynamics(m_vecDynamics);
 
     // // Create new dynamics from quests

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "cMaps/cMap.h"
+#include "cMaps/maps/cMapVillage.h"
 #include "cDynamics/creatures/witty.h"
 #include "cMenu/cInventory/cInventory.h"
 #include "cMenu/cDefaultMenu/cDefaultMenu.h"

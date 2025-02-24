@@ -3,7 +3,7 @@
 #include "cDynamics/objects/cClouds.h"
 #include "cDynamics/objects/cTrees.h"
 
-cMap_Village::cMap_Village(olc::PixelGameEngine* gfx) : cMap(gfx)
+cMap_Village::cMap_Village() : cMap()
 {
 	Create("maps/village.lvl", "village");
 }

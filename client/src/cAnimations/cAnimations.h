@@ -1,10 +1,10 @@
 #pragma once
 
 #include <olcPixelGameEngine.h>
+#include "consts/consts.h"
+
 #include <string>
 #include <map>
-
-#include "consts/consts.h"
 
 using namespace std;
 

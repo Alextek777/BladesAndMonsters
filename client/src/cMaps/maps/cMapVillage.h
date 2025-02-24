@@ -5,7 +5,7 @@
 class cMap_Village : public cMap
 {
 public:
-	cMap_Village(olc::PixelGameEngine* gfx);
+	cMap_Village();
 
 	bool PopulateDynamics(vector<cDynamic*> &vecDyns) override;
 };

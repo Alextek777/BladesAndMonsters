@@ -1,6 +1,6 @@
 
 #include "cAssets.h"
-#include "cMaps/maps/cMapVillage.h"
+
 #include <boost/filesystem.hpp>
 #include <iostream>
 
@@ -92,14 +92,4 @@ void Assets::LoadSprites()
 			continue;
 		}
     }
-}
-
-void Assets::LoadMaps(olc::PixelGameEngine* gfx)
-{
-    auto load = [&](cMap* m)
-	{
-		m_mapMaps[m->sName] = m;
-	};
-
-	load(new cMap_Village(gfx));
 }
