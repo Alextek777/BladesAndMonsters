@@ -40,11 +40,11 @@ protected:
 	bool loadFrame();
 
 public:
-	virtual void DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {}
+	virtual void DrawSelf(float ox, float oy) {}
 	virtual void Update(float fElapsedTime, cDynamic* player = nullptr) {}
 	virtual void OnInteract(cDynamic* player = nullptr) {}
 
-	static Engine* g_engine;
+	static olc::PixelGameEngine* g_engine;
 };
 
 
@@ -60,7 +60,7 @@ public:
 	int bControllable = true;
 
 public:
-	void DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) override;
+	void DrawSelf(float ox, float oy) override;
 	void Update(float fElapsedTime, cDynamic* player = nullptr) override;
 	virtual void Behaviour(float fElapsedTime, cDynamic* player = nullptr);
 	int GetFacingDirection() { return m_nFacingDirection; };
@@ -84,6 +84,6 @@ class cDynamic_Object : public cDynamic
 public:
 	cDynamic_Object(string, float, float);
 
-	void DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) override;
+	void DrawSelf(float ox, float oy) override;
 	void Update(float fElapsedTime, cDynamic* player = nullptr) override;
 };

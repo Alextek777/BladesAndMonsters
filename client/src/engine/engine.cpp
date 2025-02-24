@@ -11,6 +11,7 @@ Engine::Engine()
 bool Engine::OnUserCreate()
 {
     cMap::g_engine = this;
+    cDynamic::g_engine = this;
 
     Assets::get().LoadSprites();
     Assets::get().LoadAnimations();
@@ -101,7 +102,7 @@ bool Engine::UpdateLocalMap(float fElapsedTime)
         }
 
         dynamic->Update(fElapsedTime, m_pPlayer);
-        dynamic->DrawSelf(this, fCameraPosX, fCameraPosY);
+        dynamic->DrawSelf(fCameraPosX, fCameraPosY);
     }
 
 

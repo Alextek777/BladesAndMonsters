@@ -2,6 +2,8 @@
 
 extern e_GameMode GAMEMODE; 
 
+olc::PixelGameEngine* cDynamic::g_engine = nullptr;
+
 cDynamic::cDynamic(string name, float ox, float oy)
 {
 	sName = name;
@@ -127,7 +129,7 @@ void cDynamic_Creature::KnockBack(float dx, float dy, float dist)
 }
 
 
-void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
+void cDynamic_Creature::DrawSelf(float ox, float oy)
 {
 	bool ok = loadFrame();
 	if (frame == nullptr) {
@@ -142,16 +144,16 @@ void cDynamic_Creature::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy)
 	olc::vf2d pos((px - ox), (py - oy));
 	olc::vf2d source_Pos(frame->ox, frame->oy);
 	olc::vf2d source_Size(frame->width, frame->height);
-	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
+	g_engine->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
-		gfx->DrawRect(pos, size, olc::WHITE);
+		g_engine->DrawRect(pos, size, olc::WHITE);
 	} 
 
 	// Draw Health bar
 	float curH = float(nHealth) / float(nHealthMax);
-	gfx->FillRectDecal(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x * curH, 3), olc::RED);
-	gfx->DrawRectDecal(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x, 3), olc::BLACK);
+	g_engine->FillRectDecal(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x * curH, 3), olc::RED);
+	g_engine->DrawRectDecal(pos - olc::vi2d(0, 5), olc::vi2d(source_Size.x, 3), olc::BLACK);
 }
 
 void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
@@ -164,7 +166,7 @@ void cDynamic_Creature::Behaviour(float fElapsedTime, cDynamic* player)
 
 cDynamic_Object::cDynamic_Object(string name, float px, float py) : cDynamic(name, px, py) {}
 
-void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
+void cDynamic_Object::DrawSelf(float ox, float oy) {
 	bool ok = loadFrame();
 	if (!ok) {
 		return;
@@ -174,10 +176,10 @@ void cDynamic_Object::DrawSelf(olc::PixelGameEngine *gfx, float ox, float oy) {
 	olc::vf2d pos((px - ox), (py - oy));
 	olc::vf2d source_Pos(frame->ox, frame->oy);
 	olc::vf2d source_Size(frame->width, frame->height);
-	gfx->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
+	g_engine->DrawPartialDecal(pos, frame->decal, source_Pos, source_Size);
 
 	if (GAMEMODE == DEBUG) {
-		gfx->DrawRect(pos, size, olc::WHITE);
+		g_engine->DrawRect(pos, size, olc::WHITE);
 	} 
 }
 
