@@ -27,12 +27,11 @@ bool Engine::OnUserCreate()
 
 
 
-    // Initialize SoLoud and check for errors
     SoLoud::result initResult = soloud.init();
     if (initResult != SoLoud::SO_NO_ERROR)
     {
         std::cerr << "Failed to initialize SoLoud! Error code: " << initResult << std::endl;
-        return false; // Exit OnUserCreate() with failure
+        return false;
     }
 
     // Load the sound file and check for errors
@@ -40,8 +39,8 @@ bool Engine::OnUserCreate()
     if (loadResult != SoLoud::SO_NO_ERROR)
     {
         std::cerr << "Failed to load sound file! Error code: " << loadResult << std::endl;
-        soloud.deinit(); // Clean up SoLoud before exiting
-        return false; // Exit OnUserCreate() with failure
+        soloud.deinit(); 
+        return false;
     }
 
     // Play the sample and store the handle
@@ -49,14 +48,12 @@ bool Engine::OnUserCreate()
     if (bgMusicHandle == 0) // Check if playback failed
     {
         std::cerr << "Failed to play sound!" << std::endl;
-        soloud.deinit(); // Clean up SoLoud before exiting
-        return false; // Exit OnUserCreate() with failure
+        soloud.deinit(); 
+        return false;
     }
 
-    // // Set the sound to loop
     soloud.setLooping(bgMusicHandle, true);
 
-    // Set the volume of the background music
     soloud.setVolume(bgMusicHandle, 0.5f);
 
 

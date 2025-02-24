@@ -72,3 +72,11 @@ tasks:
       - cp -r content/* build/bin/
       - cd build/bin && ./BladesAndMonsters
 
+  test:
+    aliases:
+      - test
+    desc: "Starting tests"
+    cmds:
+      - rm -rf build/tests
+      - mkdir build/tests
+      - cd build/tests && cmake ../../tests && make && ./runTests
